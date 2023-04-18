@@ -12,7 +12,7 @@
     </v-navigation-drawer>
 
     <!-- Main content -->
-    <v-card flat class="bg-transparent">
+    <v-card flat class="bg-transparent" style="min-height: 100vh">
       <default-view />
     </v-card>
 

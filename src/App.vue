@@ -1,12 +1,9 @@
 <template>
-  <div id="app">
-    <!--    :style="`background-color: ${$vuetify.theme.dark ? '#000' : '#f1f1f1'}`"-->
-    <router-view>
-      <transition name="rout" mode="out-in">
-        <component :is="selectedComponent"></component>
-      </transition>
-    </router-view>
-  </div>
+  <router-view v-slot="{ Component }">
+    <transition name="rout" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -43,3 +40,15 @@ export default {
   },
 };
 </script>
+<style>
+.rout-enter-from,
+.rout-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.rout-enter-active,
+.rout-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+</style>

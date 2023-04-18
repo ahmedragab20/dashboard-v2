@@ -4,7 +4,7 @@
       <v-card flat outlined rounded="xl" class="pa-0 mb-5">
         <v-card flat rounded="xl" class="d-flex justify-space-between">
           <v-col cols="6">
-            <v-card-title class="text-h4 primary--text px-0">
+            <v-card-title class="text-h4 primary--text px-0 pt-0">
               البطاقات
             </v-card-title>
             <v-card-subtitle class="px-0 grey--text"

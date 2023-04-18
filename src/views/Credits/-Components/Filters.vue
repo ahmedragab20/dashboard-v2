@@ -88,14 +88,24 @@
               </v-row>
             </v-card>
             <v-card flat class="px-4">
-              <v-checkbox
-                v-model="mostCompletionRate"
-                label="الجهة التي تحتوي على أكبر معدل انجاز"
-              ></v-checkbox>
-              <v-checkbox
-                v-model="hasTheMostExperts"
-                label="الجهة التي تحتوي على أكبر عدد من الخبراء"
-              ></v-checkbox>
+              <div class="d-flex">
+                <v-checkbox
+                  v-model="mostCompletionRate"
+                  label="الجهة التي تحتوي على أكبر معدل انجاز"
+                ></v-checkbox>
+              </div>
+              <div class="d-flex">
+                <v-checkbox
+                  v-model="hasTheMostExperts"
+                  label="الجهة التي تحتوي على أكبر عدد من الخبراء"
+                ></v-checkbox>
+              </div>
+              <v-card-actions>
+                <v-btn color="primary" rounded class="pe-10" depressed>
+                  <v-icon class="pe-7 ps-3"> mdi-filter-variant</v-icon>
+                  تأكيد
+                </v-btn>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
