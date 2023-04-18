@@ -9,6 +9,8 @@
         prepend-inner-icon="mdi-magnify"
         single-line
         hide-details
+        clear-icon="mdi-close-circle"
+        clearable
       ></v-text-field>
     </v-col>
     <v-col cols="6">
@@ -32,7 +34,11 @@
             <template v-slot:activator="{ on }">
               <v-card v-on="on" flat color="transparent">
                 <v-avatar class="mx-2" size="25px">
-                  <v-img alt="Avatar" src="@/assets/avatar/avatar-saudi.jpg" cover></v-img>
+                  <v-img
+                    alt="Avatar"
+                    src="@/assets/avatar/avatar-saudi.jpg"
+                    cover
+                  ></v-img>
                 </v-avatar>
                 <span style="user-select: none" color="primary">زيد</span>
                 <v-icon size="25">mdi-menu-down</v-icon>
@@ -51,26 +57,30 @@
   </v-row>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        items: [{ title: 'الملف الشخصي' }, { title: 'الإعدادات' }, { title: 'تسجيل الخروج' }],
-      };
+export default {
+  data() {
+    return {
+      items: [
+        { title: "الملف الشخصي" },
+        { title: "الإعدادات" },
+        { title: "تسجيل الخروج" },
+      ],
+    };
+  },
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
-    methods: {
-      toggleTheme() {
-        this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style scoped>
-  .v-text-field {
-    box-shadow: none !important;
-  }
+.v-text-field {
+  box-shadow: none !important;
+}
 
-  .test .v-field--variant-solo {
-    box-shadow: none !important;
-  }
+.test .v-field--variant-solo {
+  box-shadow: none !important;
+}
 </style>
