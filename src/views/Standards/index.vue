@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="bg-transparent py-7">
+  <v-card class="bg-transparent py-7">
     <v-container>
       <v-row no-gutters>
         <v-col cols="12">
@@ -11,7 +11,7 @@
               <p>جميع المعايير الخاصة بجميع الجهات</p>
             </div>
             <div class="d-flex align-center" style="gap: 20px">
-              <v-btn @click="toggleAddStandardDialog" color="primary" flat link>
+              <v-btn @click="toggleAddStandardDialog" color="primary" link>
                 <span class="mx-2">اضافة معيار جديد</span>
                 <v-icon> mdi-plus</v-icon>
               </v-btn>
@@ -22,53 +22,130 @@
           </div>
         </v-col>
         <v-col cols="12" class="mt-4 mb-2">
-          <div class="d-flex justify-start align-center" style="gap: 15px">
-            <v-btn flat link class="bg-transparent">
-              <span class="mx-1 primary--text">عرض الكل</span>
-              <v-icon color="primary"> mdi-filter-variant</v-icon>
-            </v-btn>
-            <v-menu>
-              <template v-slot:activator="{ props }">
-                <v-btn flat link v-bind="props" class="bg-transparent">
-                  <span class="info--text mx-1"> الجهه الحكومية</span>
-                  <v-icon color="info"> mdi-filter-variant</v-icon>
+          <div class="d-flex justify-start align-center">
+            <v-col cols="6">
+              <div class="d-flex justify-start align-center" style="gap: 15px">
+                <v-btn depressed link>
+                  <span class="mx-1 primary--text">عرض الكل</span>
+                  <v-icon color="primary"> mdi-filter-variant</v-icon>
                 </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="(item, index) in gov"
-                  :key="index"
-                  :value="item"
-                >
-                  <v-list-item-title>{{ item }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-            <v-menu>
-              <template v-slot:activator="{ props }">
-                <v-btn v-bind="props" flat link class="bg-transparent">
-                  <span class="success--text mx-1"> الحالة</span>
-                  <v-icon color="success"> mdi-filter-variant</v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="(item, index) in statuses"
-                  :key="index"
-                  :value="item"
-                >
-                  <v-list-item-title>{{ item }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+
+                <v-menu offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      depressed
+                      link
+                      class="bg-transparent"
+                      v-bind="attrs"
+                      v-on="on">
+                      <span class="info--text mx-1"> الجهه الحكومية</span>
+                      <v-icon color="info"> mdi-filter-variant</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item
+                      v-for="(item, index) in gov"
+                      :key="index"
+                      :value="item">
+                      <v-list-item-title>{{ item }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+                <v-menu offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      depressed
+                      link
+                      class="bg-transparent"
+                      v-bind="attrs"
+                      v-on="on">
+                      <span class="success--text mx-1"> الحالة</span>
+                      <v-icon color="success"> mdi-filter-variant</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item
+                      v-for="(item, index) in statuses"
+                      :key="index"
+                      :value="item">
+                      <v-list-item-title>{{ item }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </div>
+            </v-col>
+            <!-- <v-col cols="6">
+              <v-text-field
+                dense
+                outlined
+                rounded
+                label="البحث"
+                prepend-inner-icon="mdi-magnify"
+                single-line
+                hide-details></v-text-field>
+            </v-col> -->
           </div>
         </v-col>
+
         <v-col cols="12">
           <v-divider class="my-7"></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
+          <v-card class="elevation-1" outlined>
+            <v-card-title class="primary--text">
+              المعايير
+              <v-spacer></v-spacer>
+              <v-text-field
+                v-model="search"
+                prepend-inner-icon="mdi-magnify"
+                label="البحث"
+                single-line
+                hide-details></v-text-field>
+            </v-card-title>
+
+            <v-data-table
+              variant="outlined"
+              :headers="headers"
+              :items="items"
+              :items-per-page="8"
+              :loading="false"
+              :search="search"
+              loading-text="Loading... Please wait"
+              class="elevation-0">
+              <template v-slot:item.status="{ item }">
+                <v-chip :color="competitionRateColor(item.rate * 100 || 0)"
+                  >{{ item.status }}
+                </v-chip>
+              </template>
+              <template v-slot:item.rate="{ item }">
+                <div class="d-flex align-center">
+                  <v-progress-circular
+                    :width="3"
+                    :size="25"
+                    class="mx-2"
+                    :value="item.rate * 100 || 0"
+                    :color="competitionRateColor(item.rate * 100 || 0)">
+                  </v-progress-circular>
+
+                  <v-list-item
+                    class="pa-0"
+                    :color="competitionRateColor(item.rate * 100)">
+                    {{ item.rate * 100 }}%
+                  </v-list-item>
+                </div>
+              </template>
+              <template v-slot:item.question="{ item }">
+                <div class="text-subtitle d-flex align-center" style="gap: 5px">
+                  <v-icon color="primary">mdi-message-question-outline </v-icon>
+                  <span class="primary--text">الاسئلة</span>
+                </div>
+              </template>
+            </v-data-table>
+          </v-card>
+        </v-col>
+        <!-- <v-col cols="12">
           <v-table height="400px">
             <thead class="bg-primary">
               <tr>
@@ -85,8 +162,7 @@
               <tr
                 v-for="(item, index) in items"
                 :key="index"
-                :class="index % 2 === 1 ? 'bg-tableRow1' : ''"
-              >
+                :class="index % 2 === 1 ? 'bg-tableRow1' : ''">
                 <td>
                   <div>{{ item.standard }}</div>
                 </td>
@@ -111,14 +187,12 @@
                       :size="25"
                       class="mx-2"
                       :value="item.rate * 100 || 0"
-                      :color="competitionRateColor(item.rate * 100 || 0)"
-                    >
+                      :color="competitionRateColor(item.rate * 100 || 0)">
                     </v-progress-circular>
 
                     <v-list-item
                       class="pa-0"
-                      :color="competitionRateColor(item.rate * 100)"
-                    >
+                      :color="competitionRateColor(item.rate * 100)">
                       {{ item.rate * 100 }}%
                     </v-list-item>
                   </div>
@@ -134,7 +208,7 @@
               </tr>
             </tbody>
           </v-table>
-        </v-col>
+        </v-col> -->
       </v-row>
     </v-container>
 
@@ -157,25 +231,22 @@
             ...items,
           ]"
           label="الجهات"
-          class="my-3"
-        ></v-select>
+          class="my-3"></v-select>
         <v-select
           dense
           outlined
           item-text="title"
           :items="standardTypes"
           label="نوع المعيار"
-          class="my-3"
-        ></v-select>
+          class="my-3"></v-select>
 
-        <v-card flat>
+        <v-card>
           <v-row no-gutters>
             <v-col cols="6" class="pe-4">
               <v-menu
                 v-model="menu1"
                 :close-on-content-click="false"
-                max-width="290"
-              >
+                max-width="290">
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     :value="computedDateOneFormatted"
@@ -186,21 +257,18 @@
                     readonly
                     v-bind="attrs"
                     v-on="on"
-                    @click:clear="date1 = null"
-                  ></v-text-field>
+                    @click:clear="date1 = null"></v-text-field>
                 </template>
                 <v-date-picker
                   v-model="date1"
-                  show-adjacent-months
-                ></v-date-picker>
+                  show-adjacent-months></v-date-picker>
               </v-menu>
             </v-col>
             <v-col cols="6">
               <v-menu
                 v-model="menu2"
                 :close-on-content-click="false"
-                max-width="290"
-              >
+                max-width="290">
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     :value="computedDateTwoFormatted"
@@ -211,13 +279,11 @@
                     readonly
                     v-bind="attrs"
                     v-on="on"
-                    @click:clear="date2 = null"
-                  ></v-text-field>
+                    @click:clear="date2 = null"></v-text-field>
                 </template>
                 <v-date-picker
                   show-adjacent-months
-                  v-model="date2"
-                ></v-date-picker>
+                  v-model="date2"></v-date-picker>
               </v-menu>
             </v-col>
           </v-row>
@@ -241,15 +307,31 @@ import { format, parseISO } from "date-fns";
 export default {
   data() {
     return {
+      search: "",
+      headers: [
+        {
+          text: "المعيار",
+          value: "standard",
+          align: "start",
+          sortable: false,
+        },
+        { text: "الجهة الحكومية", value: "gov" },
+        { text: "تاريخ البدء", value: "startDate" },
+        { text: "تاريخ الانتهاء", value: "endDate" },
+        { text: "الحالة", value: "status" },
+        { text: "نسسبة الانجاز", value: "rate" },
+        { text: "الاسئلة", value: "question" },
+      ],
       gov: ["امانة الرياض", "وزارة الصحة", "أمانة جدة"],
       statuses: ["مكتمل", "قيد العمل", "ملغي"],
+
       items: [
         {
           standard: "معيار الامن والامان",
           gov: "امانة الرياض",
           startDate: "01/01/2021",
           endDate: "01/01/2022",
-          status: { id: 1, name: "مكتمل" },
+          status: "قيد العمل",
           rate: 0.3,
         },
         {
@@ -257,7 +339,7 @@ export default {
           gov: "وزارة الصحة",
           startDate: "05/01/2021",
           endDate: "05/01/2022",
-          status: { id: 2, name: "قيد العمل" },
+          status: "قيد العمل",
           rate: 0.5,
         },
         {
@@ -265,15 +347,15 @@ export default {
           gov: "أمانة جدة",
           startDate: "02/01/2021",
           endDate: "02/01/2022",
-          status: { id: 1, name: "مكتمل" },
-          rate: 0.9,
+          status: "مكتمل",
+          rate: 1,
         },
         {
           standard: "معيار الصحة والسلامة المهنية",
           gov: "شركة النفط السعودية",
           startDate: "03/01/2021",
           endDate: "03/01/2022",
-          status: { id: 1, name: "مكتمل" },
+          status: "قيد مكتمل",
           rate: 0.7,
         },
       ],
