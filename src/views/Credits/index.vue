@@ -24,8 +24,12 @@
               rounded="xl"
             >
               <v-col cols="6">
-                <!--                @click="cardPreviewDialog = !cardPreviewDialog"-->
-                <v-btn outlined color="primary" rounded>
+                <v-btn
+                  @click="filterationsDialog = !filterationsDialog"
+                  outlined
+                  color="primary"
+                  rounded
+                >
                   <v-icon class="me-3"> mdi-filter-variant</v-icon>
                   <span>تصفية</span>
                 </v-btn>
@@ -65,7 +69,7 @@
       </transition-group>
     </v-container>
 
-    <!--    <Filters v-model="cardPreviewDialog" />-->
+    <Filters v-model="filterationsDialog" />
 
     <!-- Dialogs -->
     <v-dialog v-model="cardPreviewDialog" width="70%">
@@ -180,7 +184,7 @@ import Filters from "@/views/Credits/-Components/Filters.vue";
 export default {
   data() {
     return {
-      view: true,
+      filterationsDialog: false,
       cardPreviewDialog: false,
       cardDetails: null,
     };
