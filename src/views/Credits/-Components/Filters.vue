@@ -105,7 +105,6 @@
 </template>
 
 <script>
-import moment from "moment";
 import { format, parseISO } from "date-fns";
 
 export default {

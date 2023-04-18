@@ -11,12 +11,12 @@
               <p>جميع المعايير الخاصة بجميع الجهات</p>
             </div>
             <div class="d-flex align-center" style="gap: 20px">
-              <v-btn color="primary" flat link>
+              <v-btn @click="toggleAddStandardDialog" color="primary" flat link>
                 <span class="mx-2">اضافة معيار جديد</span>
-                <v-icon> mdi-plus </v-icon>
+                <v-icon> mdi-plus</v-icon>
               </v-btn>
               <v-btn variant="outlined" icon size="x-small" to="/">
-                <v-icon> mdi-home </v-icon>
+                <v-icon> mdi-home</v-icon>
               </v-btn>
             </div>
           </div>
@@ -31,11 +31,15 @@
               <template v-slot:activator="{ props }">
                 <v-btn flat link v-bind="props" class="bg-transparent">
                   <span class="info--text mx-1"> الجهه الحكومية</span>
-                  <v-icon color="info"> mdi-filter-variant </v-icon>
+                  <v-icon color="info"> mdi-filter-variant</v-icon>
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item v-for="(item, index) in gov" :key="index" :value="item">
+                <v-list-item
+                  v-for="(item, index) in gov"
+                  :key="index"
+                  :value="item"
+                >
                   <v-list-item-title>{{ item }}</v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -44,11 +48,15 @@
               <template v-slot:activator="{ props }">
                 <v-btn v-bind="props" flat link class="bg-transparent">
                   <span class="success--text mx-1"> الحالة</span>
-                  <v-icon color="success"> mdi-filter-variant </v-icon>
+                  <v-icon color="success"> mdi-filter-variant</v-icon>
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item v-for="(item, index) in statuses" :key="index" :value="item">
+                <v-list-item
+                  v-for="(item, index) in statuses"
+                  :key="index"
+                  :value="item"
+                >
                   <v-list-item-title>{{ item }}</v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -92,9 +100,9 @@
                   <div>{{ item.endDate }}</div>
                 </td>
                 <td>
-                  <v-chip :color="complationRateColor(item.rate * 100 || 0)">{{
-                    item.status.name
-                  }}</v-chip>
+                  <v-chip :color="competitionRateColor(item.rate * 100 || 0)"
+                    >{{ item.status.name }}
+                  </v-chip>
                 </td>
                 <td>
                   <div class="d-flex align-center">
@@ -103,18 +111,23 @@
                       :size="25"
                       class="mx-2"
                       :value="item.rate * 100 || 0"
-                      :color="complationRateColor(item.rate * 100 || 0)"
+                      :color="competitionRateColor(item.rate * 100 || 0)"
                     >
                     </v-progress-circular>
 
-                    <v-list-item class="pa-0" :color="complationRateColor(item.rate * 100)">
+                    <v-list-item
+                      class="pa-0"
+                      :color="competitionRateColor(item.rate * 100)"
+                    >
                       {{ item.rate * 100 }}%
                     </v-list-item>
                   </div>
                 </td>
                 <td>
                   <div class="text-h6 d-flex align-center" style="gap: 5px">
-                    <v-icon color="primary">mdi-message-question-outline</v-icon>
+                    <v-icon color="primary"
+                      >mdi-message-question-outline
+                    </v-icon>
                     <span class="primary--text">الاسئلة</span>
                   </div>
                 </td>
@@ -124,59 +137,193 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <!--- dialog --->
+    <v-dialog v-model="addStandardDialog" width="500">
+      <v-card class="px-4">
+        <v-card-title class="text-h5 primary--text px-0">
+          اضافة معيار جديد
+        </v-card-title>
+        <v-text-field label="اسم المعيار" dense class="my-3"></v-text-field>
+        <v-select
+          dense
+          outlined
+          item-text="standard"
+          :items="[
+            {
+              standard: 'كل الجهات',
+              gov: 'كل الجهات',
+            },
+            ...items,
+          ]"
+          label="الجهات"
+          class="my-3"
+        ></v-select>
+        <v-select
+          dense
+          outlined
+          item-text="title"
+          :items="standardTypes"
+          label="نوع المعيار"
+          class="my-3"
+        ></v-select>
+
+        <v-card flat>
+          <v-row no-gutters>
+            <v-col cols="6" class="pe-4">
+              <v-menu
+                v-model="menu1"
+                :close-on-content-click="false"
+                max-width="290"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    :value="computedDateOneFormatted"
+                    clearable
+                    outlined
+                    dense
+                    label="التاريخ البدأ:"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                    @click:clear="date1 = null"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="date1"
+                  show-adjacent-months
+                ></v-date-picker>
+              </v-menu>
+            </v-col>
+            <v-col cols="6">
+              <v-menu
+                v-model="menu2"
+                :close-on-content-click="false"
+                max-width="290"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    :value="computedDateTwoFormatted"
+                    clearable
+                    outlined
+                    dense
+                    label="التاريخ الأنتهاء:"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                    @click:clear="date2 = null"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  show-adjacent-months
+                  v-model="date2"
+                ></v-date-picker>
+              </v-menu>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-divider></v-divider>
+
+        <v-card-actions class="px-0">
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text block @click="addStandardDialog = false">
+            <v-icon>mdi-plus</v-icon>
+            اضافة معيار
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        gov: ['امانة الرياض', 'وزارة الصحة', 'أمانة جدة'],
-        statuses: ['مكتمل', 'قيد العمل', 'ملغي'],
-        items: [
-          {
-            standard: 'معيار الامن والامان',
-            gov: 'امانة الرياض',
-            startDate: '01/01/2021',
-            endDate: '01/01/2022',
-            status: { id: 1, name: 'مكتمل' },
-            rate: 0.3,
-          },
-          {
-            standard: 'معيار الجودة',
-            gov: 'وزارة الصحة',
-            startDate: '05/01/2021',
-            endDate: '05/01/2022',
-            status: { id: 2, name: 'قيد العمل' },
-            rate: 0.5,
-          },
-          {
-            standard: 'معيار الاستدامة',
-            gov: 'أمانة جدة',
-            startDate: '02/01/2021',
-            endDate: '02/01/2022',
-            status: { id: 1, name: 'مكتمل' },
-            rate: 0.9,
-          },
-          {
-            standard: 'معيار الصحة والسلامة المهنية',
-            gov: 'شركة النفط السعودية',
-            startDate: '03/01/2021',
-            endDate: '03/01/2022',
-            status: { id: 1, name: 'مكتمل' },
-            rate: 0.7,
-          },
-        ],
-      };
-    },
-    methods: {
-      complationRateColor(value) {
-        console.log('value', value);
-        if (value == 0) return 'errorr';
-        if (value < 50) return 'amber';
-        if (value < 75) return 'info';
+import { format, parseISO } from "date-fns";
 
-        return 'success';
-      },
+export default {
+  data() {
+    return {
+      gov: ["امانة الرياض", "وزارة الصحة", "أمانة جدة"],
+      statuses: ["مكتمل", "قيد العمل", "ملغي"],
+      items: [
+        {
+          standard: "معيار الامن والامان",
+          gov: "امانة الرياض",
+          startDate: "01/01/2021",
+          endDate: "01/01/2022",
+          status: { id: 1, name: "مكتمل" },
+          rate: 0.3,
+        },
+        {
+          standard: "معيار الجودة",
+          gov: "وزارة الصحة",
+          startDate: "05/01/2021",
+          endDate: "05/01/2022",
+          status: { id: 2, name: "قيد العمل" },
+          rate: 0.5,
+        },
+        {
+          standard: "معيار الاستدامة",
+          gov: "أمانة جدة",
+          startDate: "02/01/2021",
+          endDate: "02/01/2022",
+          status: { id: 1, name: "مكتمل" },
+          rate: 0.9,
+        },
+        {
+          standard: "معيار الصحة والسلامة المهنية",
+          gov: "شركة النفط السعودية",
+          startDate: "03/01/2021",
+          endDate: "03/01/2022",
+          status: { id: 1, name: "مكتمل" },
+          rate: 0.7,
+        },
+      ],
+      standardTypes: [
+        {
+          title: "الموارد البشرية",
+        },
+        {
+          title: "الموارد المالية",
+        },
+        {
+          title: "الموارد المادية",
+        },
+        {
+          title: "الموارد البيئية",
+        },
+      ],
+      date1: format(parseISO(new Date().toISOString()), "yyyy-MM-dd"),
+      date2: format(parseISO(new Date().toISOString()), "yyyy-MM-dd"),
+      menu1: false,
+      menu2: false,
+      addStandardDialog: false,
+    };
+  },
+  computed: {
+    computedDateOneFormatted() {
+      return this.date1
+        ? format(parseISO(this.date1), "EEEE, MMMM do yyyy")
+        : "";
     },
-  };
+    computedDateTwoFormatted() {
+      return this.date2
+        ? format(parseISO(this.date2), "EEEE, MMMM do yyyy")
+        : "";
+    },
+  },
+  methods: {
+    competitionRateColor(value) {
+      if (value === 0) return "error";
+      if (value < 50) return "amber";
+      if (value < 75) return "info";
+
+      return "success";
+    },
+    toggleAddStandardDialog() {
+      this.addStandardDialog = !this.addStandardDialog;
+    },
+  },
+  mounted() {
+    this.toggleAddStandardDialog();
+  },
+};
 </script>
