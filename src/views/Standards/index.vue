@@ -322,8 +322,5 @@ export default {
       this.addStandardDialog = !this.addStandardDialog;
     },
   },
-  mounted() {
-    this.toggleAddStandardDialog();
-  },
 };
 </script>
