@@ -80,7 +80,7 @@
                   </div>
                 </v-col>
               </div>
-              <div>
+              <div class="mt-2">
                 <v-btn outlined icon size="x-small" to="/">
                   <v-icon> mdi-home</v-icon>
                 </v-btn>

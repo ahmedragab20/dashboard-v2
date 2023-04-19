@@ -23,7 +23,7 @@
             <v-row>
               <v-col class="d-flex justify-space-between align-center">
                 <div
-                  class="d-flex justify-space-between align-center"
+                  class="d-flex justify-space-between align-center mt-6"
                   style="gap: 10px">
                   <v-select
                     :items="['معيار الزياده', 'معيار النقص', 'معيار الحكومة']"
