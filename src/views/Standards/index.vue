@@ -1,9 +1,9 @@
 <template>
-  <v-card flat class="bg-transparent py-7">
+  <v-card flat class="bg-transparent">
     <v-container>
-      <v-card flat outlined rounded="xl" class="mb-5 px-4 pt-4">
-        <v-row no-gutters>
-          <v-col cols="12">
+      <v-card flat outlined rounded="xl" class="pa-3 mb-5">
+        <v-row no-gutters class="pa-0 ma-0">
+          <v-col class="pa-0" cols="12">
             <div class="d-flex justify-space-between align-center">
               <div>
                 <div class="text-h4 grey--text">
@@ -23,7 +23,7 @@
               </div>
             </div>
           </v-col>
-          <v-col cols="12" class="mt-4 mb-2">
+          <v-col cols="12" class="mt-4 pa-0 mb-2">
             <div class="d-flex justify-space-between">
               <div class="d-flex justify-start align-center">
                 <v-col cols="6">

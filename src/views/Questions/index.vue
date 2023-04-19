@@ -1,7 +1,7 @@
 <template>
-  <v-card class="bg-transparent py-7">
+  <v-card class="bg-transparent">
     <v-container>
-      <v-card flat outlined rounded="xl" class="mb-5 px-4 pt-4">
+      <v-card flat outlined rounded="xl" class="mb-5 pa-3">
         <v-row no-gutters>
           <v-col cols="12">
             <div class="d-flex justify-space-between align-center">
