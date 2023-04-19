@@ -18,8 +18,8 @@
                   outlined
                   rounded
                 >
-                  <span class="mx-2">اضافة معيار جديد</span>
                   <v-icon> mdi-plus</v-icon>
+                  <span class="mx-2">اضافة معيار جديد</span>
                 </v-btn>
               </div>
             </div>
@@ -180,14 +180,25 @@
     </v-container>
 
     <!--- dialog --->
-    <v-dialog v-model="addStandardDialog" width="500">
+    <v-dialog v-model="addStandardDialog" width="500" persistent>
       <v-card class="px-4">
-        <v-card-title class="text-h5 primary--text px-0">
-          اضافة معيار جديد
-        </v-card-title>
-        <v-card-subtitle class="px-0 grey--text"
-          >من فضلك ادخل بيانات المعيار الجديد
-        </v-card-subtitle>
+        <v-row no-gutters>
+          <v-col cols="10">
+            <v-card-title class="text-h5 primary--text px-0">
+              اضافة معيار جديد
+            </v-card-title>
+            <v-card-subtitle class="px-0 grey--text"
+              >من فضلك ادخل بيانات المعيار الجديد
+            </v-card-subtitle>
+          </v-col>
+          <v-col cols="2">
+            <div class="d-flex justify-end align-center py-3">
+              <v-btn icon @click="addStandardDialog = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
         <v-text-field
           label="اسم المعيار"
           dense
@@ -276,18 +287,28 @@
 
         <v-card-actions class="px-0">
           <v-spacer></v-spacer>
-          <v-btn color="primary" text block @click="addStandardDialog = false">
+          <v-btn
+            color="primary"
+            text
+            block
+            @click="(addStandardDialog = false), (snackbar = true)"
+          >
             <v-icon>mdi-plus</v-icon>
             اضافة معيار
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-snackbar v-model="snackbar" color="primary">
+      <v-icon> mdi-check</v-icon>
+      تم اضافة المعيار بنجاح
+    </v-snackbar>
   </v-card>
 </template>
 <script>
 import { format, parseISO } from "date-fns";
 import gsap from "gsap";
+
 export default {
   data() {
     return {
@@ -394,6 +415,7 @@ export default {
       menu1: false,
       menu2: false,
       addStandardDialog: false,
+      snackbar: false,
     };
   },
   computed: {

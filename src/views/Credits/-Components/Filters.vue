@@ -101,7 +101,13 @@
                 ></v-checkbox>
               </div>
               <v-card-actions>
-                <v-btn color="primary" rounded class="pe-10" depressed>
+                <v-btn
+                  @click="closeDrawer"
+                  color="primary"
+                  rounded
+                  class="pe-10"
+                  depressed
+                >
                   <v-icon class="pe-7 ps-3"> mdi-filter-variant</v-icon>
                   تأكيد
                 </v-btn>
