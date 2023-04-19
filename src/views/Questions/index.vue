@@ -24,12 +24,15 @@
               <v-col class="d-flex justify-space-between align-center">
                 <div
                   class="d-flex justify-space-between align-center mt-6"
-                  style="gap: 10px">
+                  style="gap: 10px"
+                >
                   <v-select
                     :items="['معيار الزياده', 'معيار النقص', 'معيار الحكومة']"
                     label="اختر المعيار"
                     dense
-                    outlined>
+                    outlined
+                    rounded
+                  >
                   </v-select>
 
                   <v-select
@@ -37,13 +40,15 @@
                     label="اختر الجهة الحكومية"
                     dense
                     outlined
-                    offset-y>
+                    offset-y
+                    rounded
+                  >
                   </v-select>
                 </div>
 
                 <div>
-                  <v-btn class="ml-2" outlined icon size="x-small" to="/">
-                    <v-icon> mdi-home </v-icon>
+                  <v-btn icon small to="/">
+                    <v-icon> mdi-home</v-icon>
                   </v-btn>
                 </div>
               </v-col>
@@ -58,7 +63,8 @@
         appear
         tag="div"
         @before-enter="beforeEnter"
-        @enter="enter">
+        @enter="enter"
+      >
         <template>
           <v-col
             cols="4"
@@ -66,7 +72,9 @@
             md="6"
             sm="12"
             v-for="item in Items"
-            :key="item.rate">
+            :key="item.rate"
+            :data-index="i"
+          >
             <QuesCard :item="item"></QuesCard>
           </v-col>
         </template>

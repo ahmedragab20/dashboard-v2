@@ -7,8 +7,8 @@
             <v-card-title class="text-h4 primary--text px-0 pt-0">
               البطاقات
             </v-card-title>
-            <v-card-subtitle class="px-0 grey--text"
-              >جميع البطاقات الخاصة بجميع الجهات
+            <v-card-subtitle class="px-0 grey--text">
+              جميع البطاقات الخاصة بجميع الجهات
             </v-card-subtitle>
           </v-col>
           <v-col cols="6">
