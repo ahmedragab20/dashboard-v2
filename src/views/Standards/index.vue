@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="bg-transparent">
+  <v-card flat class="bg-transparent py-7">
     <v-container>
       <v-card flat outlined rounded="xl" class="mb-5 px-4 pt-4">
         <v-row no-gutters>
@@ -16,8 +16,7 @@
                   @click="toggleAddStandardDialog"
                   color="primary"
                   outlined
-                  rounded
-                >
+                  rounded>
                   <span class="mx-2">اضافة معيار جديد</span>
                   <v-icon> mdi-plus</v-icon>
                 </v-btn>
@@ -30,8 +29,7 @@
                 <v-col cols="6">
                   <div
                     class="d-flex justify-start align-center"
-                    style="gap: 15px"
-                  >
+                    style="gap: 15px">
                     <v-btn text link>
                       <span class="mx-1 primary--text">عرض الكل</span>
                       <v-icon color="primary"> mdi-filter-variant</v-icon>
@@ -44,8 +42,7 @@
                           link
                           class="bg-transparent"
                           v-bind="attrs"
-                          v-on="on"
-                        >
+                          v-on="on">
                           <span class="info--text mx-1"> الجهه الحكومية</span>
                           <v-icon color="info"> mdi-filter-variant</v-icon>
                         </v-btn>
@@ -54,8 +51,7 @@
                         <v-list-item
                           v-for="(item, index) in gov"
                           :key="index"
-                          :value="item"
-                        >
+                          :value="item">
                           <v-list-item-title>{{ item }}</v-list-item-title>
                         </v-list-item>
                       </v-list>
@@ -67,8 +63,7 @@
                           link
                           class="bg-transparent"
                           v-bind="attrs"
-                          v-on="on"
-                        >
+                          v-on="on">
                           <span class="success--text mx-1"> الحالة</span>
                           <v-icon color="success"> mdi-filter-variant</v-icon>
                         </v-btn>
@@ -77,8 +72,7 @@
                         <v-list-item
                           v-for="(item, index) in statuses"
                           :key="index"
-                          :value="item"
-                        >
+                          :value="item">
                           <v-list-item-title>{{ item }}</v-list-item-title>
                         </v-list-item>
                       </v-list>
@@ -87,7 +81,7 @@
                 </v-col>
               </div>
               <div>
-                <v-btn icon small to="/">
+                <v-btn outlined icon size="x-small" to="/">
                   <v-icon> mdi-home</v-icon>
                 </v-btn>
               </div>
@@ -114,52 +108,60 @@
                 rounded
                 color="primary"
                 clearable
-                clear-icon="mdi-close-circle"
-              ></v-text-field>
+                clear-icon="mdi-close-circle"></v-text-field>
             </v-card-title>
+            <transition-group
+              id="v-row-div"
+              appear
+              tag="div"
+              @before-enter="beforeEnter"
+              @enter="enter">
+              <template>
+                <v-data-table
+                  :key="1"
+                  :headers="headers"
+                  :items="items"
+                  :items-per-page="8"
+                  :loading="false"
+                  :search="search"
+                  loading-text="Loading... Please wait"
+                  dense
+                  fixed-header>
+                  <template v-slot:item.status="{ item }">
+                    <v-chip :color="competitionRateColor(item.rate * 100 || 0)"
+                      >{{ item.status }}
+                    </v-chip>
+                  </template>
+                  <template v-slot:item.rate="{ item }">
+                    <div class="d-flex align-center">
+                      <v-progress-circular
+                        :width="3"
+                        :size="25"
+                        class="mx-2"
+                        :value="item.rate * 100 || 0"
+                        :color="competitionRateColor(item.rate * 100 || 0)">
+                      </v-progress-circular>
 
-            <v-data-table
-              :headers="headers"
-              :items="items"
-              :items-per-page="8"
-              :loading="false"
-              :search="search"
-              loading-text="Loading... Please wait"
-              dense
-              fixed-header
-              custom-filter="status"
-            >
-              <template v-slot:item.status="{ item }">
-                <v-chip :color="competitionRateColor(item.rate * 100 || 0)"
-                  >{{ item.status }}
-                </v-chip>
+                      <v-list-item
+                        class="pa-0"
+                        :color="competitionRateColor(item.rate * 100)">
+                        {{ item.rate * 100 }}%
+                      </v-list-item>
+                    </div>
+                  </template>
+                  <template v-slot:item.question="{ item }">
+                    <div
+                      class="text-subtitle d-flex align-center"
+                      style="gap: 5px">
+                      <v-icon color="primary"
+                        >mdi-message-question-outline
+                      </v-icon>
+                      <span class="primary--text">الاسئلة</span>
+                    </div>
+                  </template>
+                </v-data-table>
               </template>
-              <template v-slot:item.rate="{ item }">
-                <div class="d-flex align-center">
-                  <v-progress-circular
-                    :width="3"
-                    :size="25"
-                    class="mx-2"
-                    :value="item.rate * 100 || 0"
-                    :color="competitionRateColor(item.rate * 100 || 0)"
-                  >
-                  </v-progress-circular>
-
-                  <v-list-item
-                    class="pa-0"
-                    :color="competitionRateColor(item.rate * 100)"
-                  >
-                    {{ item.rate * 100 }}%
-                  </v-list-item>
-                </div>
-              </template>
-              <template v-slot:item.question="{ item }">
-                <div class="text-subtitle d-flex align-center" style="gap: 5px">
-                  <v-icon color="primary">mdi-message-question-outline </v-icon>
-                  <span class="primary--text">الاسئلة</span>
-                </div>
-              </template>
-            </v-data-table>
+            </transition-group>
           </v-card>
         </v-col>
       </v-row>
@@ -178,8 +180,7 @@
           label="اسم المعيار"
           dense
           outlined
-          class="my-3"
-        ></v-text-field>
+          class="my-3"></v-text-field>
         <v-select
           dense
           outlined
@@ -192,16 +193,14 @@
             ...items,
           ]"
           label="الجهات"
-          class="my-3"
-        ></v-select>
+          class="my-3"></v-select>
         <v-select
           dense
           outlined
           item-text="title"
           :items="standardTypes"
           label="نوع المعيار"
-          class="my-3"
-        ></v-select>
+          class="my-3"></v-select>
 
         <v-card flat>
           <v-row no-gutters>
@@ -209,8 +208,7 @@
               <v-menu
                 v-model="menu1"
                 :close-on-content-click="false"
-                max-width="290"
-              >
+                max-width="290">
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     :value="computedDateOneFormatted"
@@ -221,21 +219,18 @@
                     readonly
                     v-bind="attrs"
                     v-on="on"
-                    @click:clear="date1 = null"
-                  ></v-text-field>
+                    @click:clear="date1 = null"></v-text-field>
                 </template>
                 <v-date-picker
                   v-model="date1"
-                  show-adjacent-months
-                ></v-date-picker>
+                  show-adjacent-months></v-date-picker>
               </v-menu>
             </v-col>
             <v-col cols="6">
               <v-menu
                 v-model="menu2"
                 :close-on-content-click="false"
-                max-width="290"
-              >
+                max-width="290">
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     :value="computedDateTwoFormatted"
@@ -246,13 +241,11 @@
                     readonly
                     v-bind="attrs"
                     v-on="on"
-                    @click:clear="date2 = null"
-                  ></v-text-field>
+                    @click:clear="date2 = null"></v-text-field>
                 </template>
                 <v-date-picker
                   show-adjacent-months
-                  v-model="date2"
-                ></v-date-picker>
+                  v-model="date2"></v-date-picker>
               </v-menu>
             </v-col>
           </v-row>
@@ -273,7 +266,7 @@
 </template>
 <script>
 import { format, parseISO } from "date-fns";
-
+import gsap from "gsap";
 export default {
   data() {
     return {
@@ -404,6 +397,19 @@ export default {
     },
     toggleAddStandardDialog() {
       this.addStandardDialog = !this.addStandardDialog;
+    },
+    beforeEnter(el) {
+      el.style.opacity = 0;
+      el.style.transform = "translateX(-100px)";
+    },
+    enter(el, done) {
+      gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 0.3,
+        onComplete: done,
+        delay: el.dataset.index * 0.1,
+      });
     },
   },
 };
