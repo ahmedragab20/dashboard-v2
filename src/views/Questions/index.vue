@@ -1,63 +1,55 @@
 <template>
-  <v-card class="bg-transparent">
+  <v-card class="transparent">
     <v-container>
       <v-card flat outlined rounded="xl" class="mb-5 pa-3">
         <v-row no-gutters>
           <v-col cols="12">
             <div class="d-flex justify-space-between align-center">
               <div>
-                <div class="text-h4 grey--text">
+                <div class="text-h5 grey--text">
                   البطاقات / <span class="primary--text">الاسئلة</span>
                 </div>
                 <p class="grey--text">جميع الاسئلة الخاصة بجميع الجهات</p>
               </div>
-              <div class="d-flex align-center" style="gap: 20px">
-                <v-btn color="primary" outlined rounded>
-                  <span class="mx-2">اضافة سؤال جديد</span>
-                  <v-icon> mdi-plus</v-icon>
-                </v-btn>
+              <div class="d-flex justify-end">
+                <div class="d-flex">
+                  <v-btn color="primary" outlined rounded>
+                    <v-icon> mdi-plus</v-icon>
+                    <span class="mx-2">اضافة سؤال جديد</span>
+                  </v-btn>
+                  <div class="mx-4 d-flex py-2">|</div>
+                </div>
+                <div class="d-flex align-center" style="gap: 10px">
+                  <div class="d-flex align-center">
+                    <v-select
+                      :items="['معيار الزياده', 'معيار النقص', 'معيار الحكومة']"
+                      label="اختر المعيار"
+                      dense
+                      outlined
+                      rounded
+                      color="primary"
+                    >
+                    </v-select>
+                  </div>
+
+                  <div class="d-flex align-center">
+                    <v-select
+                      :items="['امانة الرياض', 'امانة جده', 'وزارة الدفاع']"
+                      label="اختر الجهة الحكومية"
+                      dense
+                      outlined
+                      offset-y
+                      rounded
+                    >
+                    </v-select>
+                  </div>
+                </div>
               </div>
             </div>
-          </v-col>
-          <v-col cols="12" class="mt-2">
-            <v-row>
-              <v-col class="d-flex justify-space-between align-center">
-                <div
-                  class="d-flex justify-space-between align-center mt-6"
-                  style="gap: 10px"
-                >
-                  <v-select
-                    :items="['معيار الزياده', 'معيار النقص', 'معيار الحكومة']"
-                    label="اختر المعيار"
-                    dense
-                    outlined
-                    rounded
-                  >
-                  </v-select>
-
-                  <v-select
-                    :items="['امانة الرياض', 'امانة جده', 'وزارة الدفاع']"
-                    label="اختر الجهة الحكومية"
-                    dense
-                    outlined
-                    offset-y
-                    rounded
-                  >
-                  </v-select>
-                </div>
-
-                <div>
-                  <v-btn icon small to="/">
-                    <v-icon> mdi-home</v-icon>
-                  </v-btn>
-                </div>
-              </v-col>
-            </v-row>
           </v-col>
         </v-row>
       </v-card>
 
-      <!-- <v-row> -->
       <transition-group
         id="v-row-div"
         appear
@@ -71,15 +63,22 @@
             lg="4"
             md="6"
             sm="12"
-            v-for="item in Items"
+            v-for="(item, i) in Items"
             :key="item.rate"
             :data-index="i"
           >
-            <QuesCard :item="item"></QuesCard>
+            <v-hover>
+              <template v-slot="{ hover }">
+                <v-card flat rounded="xl" :elevation="hover ? 12 : 2">
+                  <QuesCard :item="item"></QuesCard>
+                </v-card>
+              </template>
+            </v-hover>
           </v-col>
         </template>
       </transition-group>
-      <!-- </v-row> -->
+
+      <div class="pb-8"></div>
     </v-container>
   </v-card>
 </template>
@@ -87,6 +86,7 @@
 import gsap from "gsap";
 import QuesCard from "./-components/QuesCard.vue";
 import { makeItLikeVRow } from "@/utils/helpers";
+
 export default {
   components: {
     QuesCard,

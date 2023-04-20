@@ -17,7 +17,7 @@
       <v-card
         color="transparent"
         flat
-        class="bg-transparent d-flex align-center py-1 justify-end"
+        class="transparent d-flex align-center py-1 justify-end"
         style="gap: 20px"
       >
         <v-btn icon fab small @click="toggleTheme">

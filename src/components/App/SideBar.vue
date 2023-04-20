@@ -4,10 +4,12 @@
     :color="mainColor"
     :height="height"
     :class="extraClasses"
+    dark
+    tile
   >
     <v-list v-model="open" class="pa-3">
-      <v-sheet class="bg-transparent px-3 pb-5">
-        <component :is="logo" />
+      <v-sheet class="transparent px-3 pb-5" dark>
+        <component :is="logo" class="transparent" />
       </v-sheet>
       <div v-for="(link, i) in sidebarLinks" :key="i">
         <template v-if="!link.children?.length">
@@ -16,6 +18,7 @@
             :value="link"
             :color="isActive(link) ? 'primary' : ''"
             rounded
+            dark
           >
             <template v-slot:prepend>
               <v-icon>{{ link.icon }}</v-icon>
@@ -36,6 +39,7 @@
                 v-bind="props"
                 :title="`${link.name}`"
                 :prepend-icon="link.icon"
+                dark
               ></v-list-item>
             </template>
 
@@ -47,6 +51,7 @@
                 :value="link.name"
                 :title="childLink.name"
                 :prepend-icon="childLink.icon"
+                dark
               ></v-list-item>
             </div>
           </v-list-group>
@@ -124,7 +129,7 @@ export default {
       return this.$vuetify.theme.dark;
     },
     logo() {
-      return !this.isDarkModeOn ? LogoDark : Logo;
+      return Logo; //!this.isDarkModeOn ? LogoDark : Logo;
     },
   },
   methods: {

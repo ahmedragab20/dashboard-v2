@@ -1,12 +1,12 @@
 <template>
-  <v-card flat class="bg-transparent">
+  <v-card flat class="transparent">
     <v-container>
       <v-card flat outlined rounded="xl" class="pa-3 mb-5">
         <v-row no-gutters class="pa-0 ma-0">
           <v-col class="pa-0" cols="12">
             <div class="d-flex justify-space-between align-center">
               <div>
-                <div class="text-h4 grey--text">
+                <div class="text-h5 grey--text">
                   البطاقات / <span class="primary--text">المعايير</span>
                 </div>
                 <p class="grey--text">جميع المعايير الخاصة بجميع الجهات</p>
@@ -21,75 +21,58 @@
                   <v-icon> mdi-plus</v-icon>
                   <span class="mx-2">اضافة معيار جديد</span>
                 </v-btn>
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" class="mt-4 pa-0 mb-2">
-            <div class="d-flex justify-space-between">
-              <div class="d-flex justify-start align-center">
-                <v-col cols="6">
-                  <div
-                    class="d-flex justify-start align-center"
-                    style="gap: 15px"
-                  >
-                    <v-btn rounded outlined color="primary">
-                      <span class="mx-1">عرض الكل</span>
-                    </v-btn>
-
-                    <v-menu offset-y>
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          rounded
-                          outlined
-                          color="info"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="info"> mdi-filter-variant</v-icon>
-                          <span class="mx-1"> الجهه الحكومية</span>
-                        </v-btn>
-                      </template>
-                      <v-list>
-                        <v-list-item
-                          v-for="(item, index) in gov"
-                          :key="index"
-                          :value="item"
-                        >
-                          <v-list-item-title>{{ item }}</v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                    <v-menu offset-y>
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          rounded
-                          outlined
-                          color="success"
-                          class="bg-transparent"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="success"> mdi-filter-variant</v-icon>
-                          <span class="mx-1"> الحالة</span>
-                        </v-btn>
-                      </template>
-                      <v-list>
-                        <v-list-item
-                          v-for="(item, index) in statuses"
-                          :key="index"
-                          :value="item"
-                        >
-                          <v-list-item-title>{{ item }}</v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                  </div>
-                </v-col>
-              </div>
-              <div class="mt-2">
-                <v-btn icon small to="/">
-                  <v-icon> mdi-home</v-icon>
+                |
+                <v-btn rounded outlined color="primary">
+                  <span class="mx-1">عرض الكل</span>
                 </v-btn>
+
+                <v-menu offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      rounded
+                      outlined
+                      color="info"
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-icon color="info"> mdi-filter-variant</v-icon>
+                      <span class="mx-1"> الجهه الحكومية</span>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item
+                      v-for="(item, index) in gov"
+                      :key="index"
+                      :value="item"
+                    >
+                      <v-list-item-title>{{ item }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+                <v-menu offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      rounded
+                      outlined
+                      color="success"
+                      class="transparent"
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-icon color="success"> mdi-filter-variant</v-icon>
+                      <span class="mx-1"> الحالة</span>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item
+                      v-for="(item, index) in statuses"
+                      :key="index"
+                      :value="item"
+                    >
+                      <v-list-item-title>{{ item }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
               </div>
             </div>
           </v-col>
@@ -129,12 +112,13 @@
                   :key="1"
                   :headers="headers"
                   :items="items"
-                  :items-per-page="8"
+                  :items-per-page="10"
                   :loading="false"
                   :search="search"
                   loading-text="Loading... Please wait"
                   dense
                   fixed-header
+                  must-sort
                 >
                   <template v-slot:item.status="{ item }">
                     <v-chip :color="competitionRateColor(item.rate * 100 || 0)"
@@ -142,7 +126,7 @@
                     </v-chip>
                   </template>
                   <template v-slot:item.rate="{ item }">
-                    <div class="d-flex align-center">
+                    <div class="d-flex align-center justify-center">
                       <v-progress-circular
                         :width="3"
                         :size="25"
@@ -165,8 +149,8 @@
                       class="text-subtitle d-flex align-center"
                       style="gap: 5px"
                     >
-                      <v-icon color="primary"
-                        >mdi-message-question-outline
+                      <v-icon color="primary">
+                        mdi-message-question-outline
                       </v-icon>
                       <span class="primary--text">الاسئلة</span>
                     </div>
@@ -179,7 +163,7 @@
       </v-row>
     </v-container>
 
-    <!--- dialog --->
+    <!-- dialog --->
     <v-dialog v-model="addStandardDialog" width="500" persistent>
       <v-card class="px-4">
         <v-row no-gutters>
@@ -283,14 +267,40 @@
           </v-row>
         </v-card>
 
+        <v-card flat>
+          <v-select
+            v-model="selectedExperts"
+            :items="experts"
+            label="الخبراء المعنيين"
+            multiple
+            chips
+            hint="اختر الخبراء المعنيين"
+            item-text="name"
+            persistent-hint
+            menu-props="auto"
+            hide-details
+            outlined
+            dense
+          >
+            <template v-slot:selection="{ item, index }">
+              <v-chip pill small>
+                <v-avatar left>
+                  <v-img :src="item.image" cover></v-img>
+                </v-avatar>
+                {{ item.name }}
+              </v-chip>
+            </template>
+          </v-select>
+        </v-card>
+
         <v-divider></v-divider>
 
-        <v-card-actions class="px-0">
+        <v-card-actions class="px-0 py-4">
           <v-spacer></v-spacer>
           <v-btn
             color="primary"
-            text
             block
+            rounded
             @click="(addStandardDialog = false), (snackbar = true)"
           >
             <v-icon>mdi-plus</v-icon>
@@ -416,6 +426,29 @@ export default {
       menu2: false,
       addStandardDialog: false,
       snackbar: false,
+      selectedExperts: [],
+      experts: [
+        {
+          name: "محمد العمري",
+          image: "https://randomuser.me/api/portraits/men/1.jpg",
+        },
+        {
+          name: "فاطمة الحمداني",
+          image: "https://randomuser.me/api/portraits/women/2.jpg",
+        },
+        {
+          name: "علي الغامدي",
+          image: "https://randomuser.me/api/portraits/men/3.jpg",
+        },
+        {
+          name: "نورة الشمري",
+          image: "https://randomuser.me/api/portraits/women/4.jpg",
+        },
+        {
+          name: "أحمد المنصور",
+          image: "https://randomuser.me/api/portraits/men/5.jpg",
+        },
+      ],
     };
   },
   computed: {
@@ -457,3 +490,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.red-background {
+  background-color: red;
+}
+</style>

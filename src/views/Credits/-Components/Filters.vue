@@ -30,76 +30,72 @@
                 ></v-text-field>
               </v-col>
             </v-card>
-            <v-card flat>
-              <v-card-title> النتائج خلال فترة محددة:</v-card-title>
+            <v-card flat class="px-4">
               <v-row no-gutters>
-                <v-col cols="6" class="px-4">
-                  <v-menu
-                    v-model="menu1"
-                    :close-on-content-click="false"
-                    max-width="290"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        :value="computedDateOneFormatted"
-                        clearable
-                        outlined
-                        rounded
-                        dense
-                        label="التاريخ من:"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                        @click:clear="date1 = null"
-                      ></v-text-field>
-                    </template>
-                    <v-date-picker
-                      v-model="date1"
-                      show-adjacent-months
-                    ></v-date-picker>
-                  </v-menu>
+                <v-col cols="6" class="pe-4">
+                  <v-text-field
+                    dense
+                    outlined
+                    rounded
+                    type="number"
+                    label="المدة المتوقعة للانجاز بالأيام"
+                  ></v-text-field>
                 </v-col>
-                <v-col cols="6">
-                  <v-menu
-                    v-model="menu2"
-                    :close-on-content-click="false"
-                    max-width="290"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        :value="computedDateTwoFormatted"
-                        clearable
-                        outlined
-                        rounded
-                        dense
-                        label="التاريخ الى:"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                        @click:clear="date2 = null"
-                      ></v-text-field>
-                    </template>
-                    <v-date-picker
-                      show-adjacent-months
-                      v-model="date2"
-                    ></v-date-picker>
-                  </v-menu>
+                <v-col cols="6" class="ps-4">
+                  <v-card flat>
+                    <v-select
+                      v-model="selectedExperts"
+                      :items="experts"
+                      label="الخبراء المعنيين"
+                      multiple
+                      hint="اختر الخبراء المعنيين"
+                      item-text="name"
+                      item-value="name"
+                      persistent-hint
+                      menu-props="auto"
+                      hide-details
+                      outlined
+                      rounded
+                      dense
+                    >
+                      <template v-slot:selection="{ item, index }">
+                        <v-chip
+                          pill
+                          small
+                          close
+                          @click:close="selectedExperts.splice(index, 1)"
+                        >
+                          <v-avatar left>
+                            <v-img :src="item.image" cover></v-img>
+                          </v-avatar>
+                          {{ item.name }}
+                        </v-chip>
+                      </template>
+                    </v-select>
+                  </v-card>
                 </v-col>
               </v-row>
             </v-card>
             <v-card flat class="px-4">
               <div class="d-flex">
-                <v-checkbox
+                <v-switch
                   v-model="mostCompletionRate"
                   label="الجهة التي تحتوي على أكبر معدل انجاز"
-                ></v-checkbox>
+                ></v-switch>
               </div>
               <div class="d-flex">
-                <v-checkbox
+                <v-switch
                   v-model="hasTheMostExperts"
                   label="الجهة التي تحتوي على أكبر عدد من الخبراء"
-                ></v-checkbox>
+                ></v-switch>
               </div>
+              <div class="d-flex">
+                <v-switch
+                  v-model="mostRating"
+                  label="الجهة التي تحتوي على أكبر معدل تقييم"
+                ></v-switch>
+              </div>
+
               <v-card-actions>
                 <v-btn
                   @click="closeDrawer"
@@ -141,6 +137,29 @@ export default {
       date2: format(parseISO(new Date().toISOString()), "yyyy-MM-dd"),
       menu1: false,
       menu2: false,
+      selectedExperts: [],
+      experts: [
+        {
+          name: "محمد العمري",
+          image: "https://randomuser.me/api/portraits/men/1.jpg",
+        },
+        {
+          name: "فاطمة الحمداني",
+          image: "https://randomuser.me/api/portraits/women/2.jpg",
+        },
+        {
+          name: "علي الغامدي",
+          image: "https://randomuser.me/api/portraits/men/3.jpg",
+        },
+        {
+          name: "نورة الشمري",
+          image: "https://randomuser.me/api/portraits/women/4.jpg",
+        },
+        {
+          name: "أحمد المنصور",
+          image: "https://randomuser.me/api/portraits/men/5.jpg",
+        },
+      ],
     };
   },
   computed: {

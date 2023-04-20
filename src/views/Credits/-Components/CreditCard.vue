@@ -4,42 +4,20 @@
     :max-width="368"
     rounded="xl"
     density="compact"
+    color="transparent"
     flat
     outlined
   >
-    <div class="d-flex py-3 justify-space-between">
-      <div></div>
-      <div class="d-flex flex-column">
-        <v-tooltip top>
-          <template v-slot:activator="{ on }">
-            <div v-on="on">
-              <v-progress-circular
-                :width="3"
-                :rotate="-90"
-                :size="25"
-                class="mx-3"
-                :value="item.completionRate * 100 || 0"
-                :color="completionRateColor(item.completionRate * 100 || 0)"
-              >
-              </v-progress-circular>
-            </div>
-          </template>
-          <span>
-            {{ `${credits.completionRate} ${item.completionRate * 100 || 0}%` }}
-          </span>
-        </v-tooltip>
-      </div>
-    </div>
     <v-card-text class="py-0">
       <v-row align="center" no-gutters>
         <v-col cols="12" class="text-center">
-          <v-icon color="primary" :size="88">{{ item.icon }}</v-icon>
+          <v-icon color="primary" :size="58">{{ item.icon }}</v-icon>
         </v-col>
         <v-col cols="12">
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
               <div v-on="on" v-bind="attrs">
-                <div class="text-h6 text-truncate font-weight-bold text-center">
+                <div class="body-1 text-truncate font-weight-bold text-center">
                   {{ item.title }}
                 </div>
               </div>
@@ -47,11 +25,61 @@
             <v-card-subtitle class="pa-0">{{ item.title }}</v-card-subtitle>
           </v-tooltip>
         </v-col>
+        <v-col cols="12">
+          <div class="d-flex justify-center align-center">
+            <v-progress-circular
+              :width="3"
+              :rotate="-90"
+              :size="30"
+              class="mx-3"
+              :value="item.completionRate * 100 || 0"
+              :color="completionRateColor(item.completionRate * 100 || 0)"
+            >
+              <small>
+                {{ item.completionRate * 100 }}
+              </small>
+            </v-progress-circular>
+            <v-card-subtitle class="body-1 px-0">
+              معدل الانجاز
+            </v-card-subtitle>
+          </div>
+        </v-col>
       </v-row>
     </v-card-text>
+    <v-expand-transition>
+      <v-card v-show="expand" flat color="transparent" width="100%">
+        <div
+          v-for="(key, i) in Object.keys(item)"
+          :key="i"
+          class="px-2 grey--text mt-3"
+        >
+          <template
+            v-if="
+              ![
+                'id',
+                'title',
+                'rate',
+                'icon',
+                'questions',
+                'standards',
+              ].includes(key)
+            "
+          >
+            <template v-if="key !== 'completionRate'">
+              <div class="d-flex justify-center">
+                <div class="d-flex font-weight-bold mx-2">
+                  {{ credits[key] }}:
+                </div>
+                <span>{{ item[key] }}</span>
+              </div>
+            </template>
+          </template>
+        </div>
+      </v-card>
+    </v-expand-transition>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn text block rounded @click="openDetails">
+      <v-btn text block rounded @click="expand = !expand">
         {{ credits.showFullDetails }}
       </v-btn>
     </v-card-actions>
@@ -74,14 +102,6 @@ export default {
     };
   },
   computed: {
-    headers() {
-      return [
-        {
-          text: credits.details,
-          value: "details",
-        },
-      ];
-    },
     credits() {
       return credits;
     },

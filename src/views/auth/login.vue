@@ -3,7 +3,7 @@
     max-width="1224px"
     rounded="0"
     min-height="100vh"
-    class="mx-auto bg-transparent"
+    class="mx-auto transparent"
     flat
   >
     <v-container>
@@ -15,7 +15,7 @@
           rounded
           class="d-flex flex-column justify-center pa-8 overflow-hidden"
         >
-          <v-card flat class="bg-transparent">
+          <v-card flat class="transparent">
             <v-card-title class="text-h3 mb-3">
               {{ auth.login }}
             </v-card-title>
@@ -75,7 +75,7 @@
         <v-card
           flat
           width="50%"
-          class="bg-transparent d-flex justify-center align-center"
+          class="transparent d-flex justify-center align-center"
           outlined
           tile
         >

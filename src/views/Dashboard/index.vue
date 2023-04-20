@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row no-gutters justify="space-between">
-      <v-card flat class="bg-transparent">
+      <v-card flat class="transparent">
         <v-card-title class="text-h4 font-bold primary--text">
           {{ dashboard.homepage }}
         </v-card-title>
@@ -15,7 +15,7 @@
       <!-- Time Dialog -->
       <v-dialog v-model="timeDialog" width="auto" class="rounded-xl">
         <template v-slot:activator="{ props }">
-          <v-card flat class="d-flex align-end bg-transparent" v-bind="props">
+          <v-card flat class="d-flex align-end transparent" v-bind="props">
             <v-btn
               @click="timeDialog = !timeDialog"
               depressed
@@ -30,7 +30,7 @@
         <Timer />
       </v-dialog>
     </v-row>
-    <v-card flat class="mt-10 pa-3 bg-transparent">
+    <v-card flat class="mt-10 pa-3 transparent">
       <!---- Simple card --->
       <transition-group
         id="v-row-div"
@@ -52,7 +52,7 @@
       </transition-group>
     </v-card>
     <!-- Charts -->
-    <v-card flat rounded class="bg-transparent mt-5 pa-3">
+    <v-card flat rounded class="transparent mt-5 pa-3">
       <v-card-title class="text-h5 font-bold primary--text">
         {{ dashboard.charts }}
       </v-card-title>
@@ -63,10 +63,11 @@
         :index="i"
         :items="chartDivs"
         class="py-6"
+        :columns="i === 1"
       >
         <template #start>
           <!-- Circular Progress -->
-          <v-card flat class="mt-8 mx-auto bg-transparent" max-width="500px">
+          <v-card flat class="mt-8 mx-auto transparent" max-width="500px">
             <v-card-title class="primary--text">
               {{ dashboard.governmentStandards }}
             </v-card-title>
@@ -74,33 +75,25 @@
               {{ dashboard.governmentStandardsDescription }}
             </v-card-subtitle>
             <div class="d-flex justify-center mt-10">
-              <div
-                v-for="(stander, i) in governmentStanders"
-                :key="i"
-                class="text-center"
-              >
+              <div class="text-center">
                 <v-progress-circular
                   class="mx-3"
                   :size="128"
                   :width="12"
                   :rotate="-90"
-                  :value="stander.value"
-                  :color="stander.color"
+                  :value="92"
+                  color="success"
                 >
-                  <span class="text-h5 font-weight-bold">
-                    {{ stander.value }}%
-                  </span>
+                  <span class="text-h5 font-weight-bold"> 92% </span>
                 </v-progress-circular>
-                <v-card-text class="text-h5">
-                  {{ stander.title }}
-                </v-card-text>
+                <v-card-text class="text-h5"> معدل الإنجاز </v-card-text>
               </div>
             </div>
           </v-card>
         </template>
         <template #end>
           <!-- Charts Card -->
-          <v-card flat class="bg-transparent">
+          <v-card flat class="transparent">
             <v-row>
               <v-col cols="12" sm="6">
                 <v-select
@@ -108,7 +101,7 @@
                   :items="filters"
                   :label="dashboard.filters"
                   color="primary"
-                  class="bg-transparent"
+                  class="transparent"
                 ></v-select>
               </v-col>
               <v-col cols="12" sm="6">
@@ -117,7 +110,7 @@
                   :items="chartTypes"
                   :label="dashboard.changeTheChartView"
                   color="primary"
-                  class="bg-transparent"
+                  class="transparent"
                 ></v-select>
               </v-col>
             </v-row>
@@ -176,7 +169,7 @@ export default {
       selectedFilter: null,
       governmentStanders: [
         { title: "مكتملة", value: 40, color: "#45a2ff" },
-        { title: "جارية", value: 20, color: "#a39714" },
+        { title: "جارية", value: 23, color: "#a39714" },
         { title: "متوقفة", value: 10, color: "#ff1f62" },
       ],
       beforeEnter: (el) => {

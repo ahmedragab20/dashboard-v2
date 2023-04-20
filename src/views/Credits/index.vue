@@ -1,8 +1,8 @@
 <template>
-  <v-card flat class="bg-transparent pb-16">
+  <v-card flat class="transparent pb-16">
     <v-container>
       <v-card flat outlined rounded="xl" class="pa-0 mb-5">
-        <v-card flat rounded="xl" class="d-flex justify-space-between">
+        <v-card flat rounded="xl" class="d-flex justify-space-between pa-0">
           <v-col cols="6">
             <v-card-title class="text-h4 primary--text px-0 pt-0">
               البطاقات
@@ -12,39 +12,19 @@
             </v-card-subtitle>
           </v-col>
           <v-col cols="6">
-            <div class="d-flex justify-end align-center py-2"></div>
+            <div class="d-flex justify-end align-center py-0">
+              <v-btn
+                @click="filterationsDialog = !filterationsDialog"
+                outlined
+                color="primary"
+                rounded
+              >
+                <v-icon class="me-3"> mdi-filter-variant</v-icon>
+                <span>تصفية</span>
+              </v-btn>
+            </div>
           </v-col>
         </v-card>
-
-        <v-row no-gutters>
-          <v-col cols="12">
-            <v-card
-              flat
-              class="d-flex justify-space-between align-center"
-              rounded="xl"
-            >
-              <v-col cols="6">
-                <v-btn
-                  @click="filterationsDialog = !filterationsDialog"
-                  outlined
-                  color="primary"
-                  rounded
-                >
-                  <v-icon class="me-3"> mdi-filter-variant</v-icon>
-                  <span>تصفية</span>
-                </v-btn>
-              </v-col>
-
-              <v-col cols="6">
-                <div class="d-flex justify-end">
-                  <v-btn variant="outlined" icon size="x-small" to="/">
-                    <v-icon> mdi-home</v-icon>
-                  </v-btn>
-                </div>
-              </v-col>
-            </v-card>
-          </v-col>
-        </v-row>
       </v-card>
       <transition-group
         id="v-row-div"
@@ -59,11 +39,25 @@
             :data-index="i"
             :key="i"
             cols="12"
-            lg="3"
+            lg="4"
             md="4"
             sm="6"
           >
-            <CreditCard :item="item" @openDetails="previewCard" />
+            <v-hover>
+              <template v-slot="{ hover }">
+                <v-card
+                  :elevation="!hover ? 0 : 1"
+                  rounded="xl"
+                  :color="!hover ? '' : 'indigo lighten-5'"
+                  :style="`border: 1px solid ${
+                    $vuetify.theme.dark ? '#333' : '#e1e1e1'
+                  }`"
+                  class="pt-3"
+                >
+                  <CreditCard :item="item" @openDetails="previewCard" />
+                </v-card>
+              </template>
+            </v-hover>
           </v-col>
         </template>
       </transition-group>

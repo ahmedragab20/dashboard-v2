@@ -51,4 +51,8 @@ export default {
 .rout-leave-active {
   transition: all 0.3s ease-in-out;
 }
+
+.v-card {
+  background: transparent;
+}
 </style>

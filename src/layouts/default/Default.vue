@@ -8,24 +8,22 @@
 
     <!-- Sidebar -->
     <v-navigation-drawer v-model="drawer" app right>
-      <SideBar />
+      <SideBar main-color="primary" />
     </v-navigation-drawer>
 
-    <!-- Main content -->
-    <v-card flat class="bg-transparent" style="min-height: 100vh">
-      <default-view />
-    </v-card>
+    <!-- Main Content -->
+    <default-view />
 
     <!-- Footer -->
-    <v-footer elevation="0" class="bg-transparent d-flex justify-end" border>
-      <v-card flat rounded color="transparent">
+    <v-footer elevation="0" class="d-flex justify-end" border>
+      <v-card flat tile color="transparent">
         <v-card-text class="text-end">
           <v-btn
             fab
             icon
             small
             outlined
-            class="bg-transparent"
+            class="transparent"
             @click="toggleTheme"
           >
             <v-icon>mdi-lightbulb</v-icon>
