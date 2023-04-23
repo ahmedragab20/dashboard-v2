@@ -8,8 +8,8 @@ export default [
     researchersNumber: 50,
     expertsNumber: 10,
     icon: "mdi-heart-pulse",
-    lastVisit: "Apr 15, 2023 - 10:30 AM",
-    lastEdit: "Apr 16, 2023 - 14:20 PM",
+    lastVisit: "Apr 15, 2023",
+    lastEdit: "Apr 16, 2023",
     questions: [
       {
         id: "q1",
@@ -52,8 +52,8 @@ export default [
     researchersNumber: 30,
     expertsNumber: 15,
     icon: "mdi-telescope",
-    lastVisit: "Apr 17, 2023 - 18:45 PM",
-    lastEdit: "Apr 17, 2023 - 20:10 PM",
+    lastVisit: "Apr 17, 2023",
+    lastEdit: "Apr 17, 2023",
     questions: [
       {
         id: "q1",
@@ -95,8 +95,8 @@ export default [
     researchersNumber: 25,
     expertsNumber: 12,
     icon: "mdi-earth",
-    lastVisit: "Apr 16, 2023 - 14:20 PM",
-    lastEdit: "Apr 17, 2023 - 13:30 PM",
+    lastVisit: "Apr 16, 2023",
+    lastEdit: "Apr 17, 2023",
     questions: [
       {
         id: "q1",
@@ -138,8 +138,8 @@ export default [
     researchersNumber: 50,
     expertsNumber: 20,
     icon: "mdi-medical-bag",
-    lastVisit: "Apr 17, 2023 - 11:45 AM",
-    lastEdit: "Apr 17, 2023 - 17:20 PM",
+    lastVisit: "Apr 17, 2023",
+    lastEdit: "Apr 17, 2023",
     questions: [
       {
         id: "q1",
@@ -180,8 +180,8 @@ export default [
     researchersNumber: 40,
     expertsNumber: 15,
     icon: "mdi-flower",
-    lastVisit: "Apr 16, 2023 - 14:30 PM",
-    lastEdit: "Apr 17, 2023 - 09:45 AM",
+    lastVisit: "Apr 16, 2023",
+    lastEdit: "Apr 17, 2023",
     questions: [
       {
         id: "q1",
@@ -264,8 +264,8 @@ export default [
     researchersNumber: 30,
     expertsNumber: 15,
     icon: "mdi-hospital-building",
-    lastVisit: "Apr 18, 2023 - 14:30 PM",
-    lastEdit: "Apr 18, 2023 - 19:10 PM",
+    lastVisit: "Apr 18, 2023",
+    lastEdit: "Apr 18, 2023",
     questions: [
       {
         id: "q1",
@@ -306,8 +306,8 @@ export default [
     researchersNumber: 30,
     expertsNumber: 15,
     icon: "mdi-food",
-    lastVisit: "Apr 16, 2023 - 09:30 AM",
-    lastEdit: "Apr 17, 2023 - 14:05 PM",
+    lastVisit: "Apr 16, 2023",
+    lastEdit: "Apr 17, 2023",
     questions: [
       {
         id: "q1",
@@ -348,8 +348,8 @@ export default [
     researchersNumber: 30,
     expertsNumber: 15,
     icon: "mdi-tractor",
-    lastVisit: "Apr 16, 2023 - 14:30 PM",
-    lastEdit: "Apr 17, 2023 - 10:20 AM",
+    lastVisit: "Apr 16, 2023",
+    lastEdit: "Apr 17, 2023",
     questions: [
       {
         id: "q1",

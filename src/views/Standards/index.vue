@@ -119,6 +119,8 @@
                   dense
                   fixed-header
                   must-sort
+                  striped
+                  class="px-5 rounded-xl overflow-hidden"
                 >
                   <template v-slot:item.status="{ item }">
                     <v-chip :color="competitionRateColor(item.rate * 100 || 0)"
@@ -488,10 +490,32 @@ export default {
       });
     },
   },
+  mounted() {
+    setInterval(() => {
+      const columnHeaders = document.querySelectorAll('[role="columnheader"]');
+
+      columnHeaders.forEach((header) => {
+        header.classList.remove("text-start");
+        header.classList.add("text-center");
+      });
+
+      const td = document.querySelectorAll("td");
+      td.forEach((td) => {
+        td.classList.remove("text-start");
+        td.classList.add("text-center");
+      });
+    });
+  },
 };
 </script>
-<style scoped>
-.red-background {
-  background-color: red;
+
+<style lang="scss">
+[role="columnheader"] {
+  background-color: #3d3870 !important;
+  border-color: #3d3870 !important;
+
+  * {
+    color: #fff !important;
+  }
 }
 </style>

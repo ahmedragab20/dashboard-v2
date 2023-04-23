@@ -18,7 +18,7 @@
             :value="link"
             :color="isActive(link) ? 'primary' : ''"
             rounded
-            dark
+            active-class="white rounded elevation-5"
           >
             <template v-slot:prepend>
               <v-icon>{{ link.icon }}</v-icon>
@@ -107,19 +107,20 @@ export default {
           name: "المعايير",
           url: "/credits/standards",
           icon: "mdi-ruler",
-          children: [],
-        },
-        {
-          name: "الأسئلة",
-          url: "/credits/questions",
-          icon: "mdi-comment-question-outline",
-          children: [],
-        },
-        {
-          name: "Components ",
-          url: "/dummy/blank",
-          children: [],
-          icon: "mdi-contrast-box",
+          children: [
+            {
+              name: "الأسئلة",
+              url: "/credits/questions",
+              icon: "mdi-comment-question-outline",
+              children: [],
+            },
+            {
+              name: "Components ",
+              url: "/dummy/blank",
+              children: [],
+              icon: "mdi-contrast-box",
+            },
+          ],
         },
       ],
     };
@@ -140,3 +141,9 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.v-list-group__header .v-list-item .v-list-item--link .theme--dark {
+  background-color: #1e1e1e !important;
+  color: #000 !important;
+}
+</style>

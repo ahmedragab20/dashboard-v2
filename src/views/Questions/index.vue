@@ -13,7 +13,12 @@
               </div>
               <div class="d-flex justify-end">
                 <div class="d-flex">
-                  <v-btn color="primary" outlined rounded>
+                  <v-btn
+                    @click="toggleAddQuestionDialog"
+                    color="primary"
+                    outlined
+                    rounded
+                  >
                     <v-icon> mdi-plus</v-icon>
                     <span class="mx-2">اضافة سؤال جديد</span>
                   </v-btn>
@@ -80,6 +85,147 @@
 
       <div class="pb-8"></div>
     </v-container>
+
+    <!-- Dialogs -->
+    <v-dialog v-model="addQuestionDialog" max-width="720px">
+      <v-card>
+        <v-card-title>
+          <span class="text-h5 primary--text"> اضافة مجموعة أسئلة </span>
+        </v-card-title>
+        <v-card-text>
+          <v-container fluid>
+            <v-row no-gutters>
+              <v-col cols="12">
+                <v-text-field
+                  dense
+                  label="عنوان "
+                  required
+                  outlined
+                  hide-details
+                ></v-text-field>
+              </v-col>
+              <v-divider class="my-4"></v-divider>
+              <v-col cols="12">
+                <v-card
+                  flat
+                  class="d-flex justify-space-between align-center py-0"
+                >
+                  <v-card-title class="px-0">
+                    <span class="text-h6">اضافة سؤال</span>
+                  </v-card-title>
+                  <v-btn icon>
+                    <v-icon>mdi-plus</v-icon>
+                  </v-btn>
+                </v-card>
+              </v-col>
+              <v-col cols="12">
+                <v-card outlined class="py-0">
+                  <v-col cols="12">
+                    <v-textarea
+                      label="السؤال"
+                      required
+                      outlined
+                      messages="السؤال مطلوب"
+                    ></v-textarea>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-autocomplete
+                      dense
+                      outlined
+                      :items="[
+                        'معايير الامان والسلامة',
+                        'معايير الجودة',
+                        'معايير الصحة والسلامة المهنية',
+                        'معايير البيئة',
+                      ]"
+                      label="المعيار*"
+                      multiple
+                      hint="اختر المعيارات التي تنطبق عليها الاسئلة"
+                    ></v-autocomplete>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-autocomplete
+                      dense
+                      outlined
+                      :items="[
+                        'امانة الرياض',
+                        'امانة جده',
+                        'وزارة الدفاع',
+                        'وزارة الصحة',
+                      ]"
+                      label="الجهة الحكومية*"
+                      hint="اختر الجهة الحكومية التي تنطبق عليها الاسئلة"
+                    ></v-autocomplete>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-file-input
+                      dense
+                      v-model="files"
+                      color="deep-purple accent-4"
+                      counter
+                      label="المرفقات"
+                      multiple
+                      placeholder="اختر المرفقات"
+                      prepend-icon="mdi-paperclip"
+                      outlined
+                      :show-size="1000"
+                    >
+                      <template v-slot:selection="{ index, text }">
+                        <v-chip
+                          v-if="index < 2"
+                          color="deep-purple accent-4"
+                          dark
+                          label
+                          small
+                        >
+                          {{ text }}
+                        </v-chip>
+
+                        <span
+                          v-else-if="index === 2"
+                          class="text-overline grey--text text--darken-3 mx-2"
+                        >
+                          +{{ files.length - 2 }} ملفات اخرى
+                        </span>
+                      </template>
+                    </v-file-input>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-card
+                      flat
+                      class="d-flex justify-space-between align-center"
+                    >
+                      <!-- required question -->
+                      <v-switch label="السؤال مطلوب" color="primary"></v-switch>
+                      <div class="d-flex">
+                        <!-- copy question -->
+                        <v-btn icon class="me-2">
+                          <v-icon>mdi-content-copy</v-icon>
+                        </v-btn>
+                        <!-- delete question -->
+                        <v-btn icon>
+                          <v-icon>mdi-delete</v-icon>
+                        </v-btn>
+                      </div>
+                    </v-card>
+                  </v-col>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions class="pb-5">
+          <v-btn
+            color="primary"
+            block
+            rounded
+            @click="addQuestionDialog = false"
+          >
+            اضافة
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 <script>
@@ -135,6 +281,8 @@ export default {
           gradeTitle: "جيد",
         },
       ],
+      addQuestionDialog: false,
+      files: [],
     };
   },
   methods: {
@@ -151,6 +299,9 @@ export default {
         delay: el.dataset.index * 0.1,
       });
     },
+    toggleAddQuestionDialog() {
+      this.addQuestionDialog = !this.addQuestionDialog;
+    },
   },
   mounted() {
     const vRowDiv = document.getElementById("v-row-div");
@@ -158,9 +309,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.v-content .v-card.theme--light {
-  background-color: #ffffff !important;
-  border-left: 5px solid red !important;
-}
-</style>

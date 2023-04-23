@@ -12,16 +12,36 @@
             </v-card-subtitle>
           </v-col>
           <v-col cols="6">
-            <div class="d-flex justify-end align-center py-0">
-              <v-btn
-                @click="filterationsDialog = !filterationsDialog"
-                outlined
-                color="primary"
-                rounded
-              >
-                <v-icon class="me-3"> mdi-filter-variant</v-icon>
-                <span>تصفية</span>
-              </v-btn>
+            <div
+              class="d-flex justify-center align-end py-0 flex-column"
+              style="gap: 10px"
+            >
+              <div class="d-flex justify-end align-center py-0">
+                <v-btn
+                  @click="expandAll = !expandAll"
+                  outlined
+                  color="primary"
+                  rounded
+                >
+                  <v-icon class="me-3">
+                    mdi-chevron-double-{{ expandAll ? "up" : "down" }}</v-icon
+                  >
+                  <span>{{
+                    expandAll ? "إخفاء التفاصيل" : "عرض تفاصيل الكل"
+                  }}</span>
+                </v-btn>
+              </div>
+              <div class="d-flex justify-end align-center py-0">
+                <v-btn
+                  @click="filterationsDialog = !filterationsDialog"
+                  outlined
+                  color="primary"
+                  rounded
+                >
+                  <v-icon class="me-3"> mdi-filter-variant</v-icon>
+                  <span>تصفية</span>
+                </v-btn>
+              </div>
             </div>
           </v-col>
         </v-card>
@@ -39,7 +59,7 @@
             :data-index="i"
             :key="i"
             cols="12"
-            lg="4"
+            lg="3"
             md="4"
             sm="6"
           >
@@ -54,7 +74,7 @@
                   }`"
                   class="pt-3"
                 >
-                  <CreditCard :item="item" @openDetails="previewCard" />
+                  <CreditCard :item="item" :expandAll="expandAll" />
                 </v-card>
               </template>
             </v-hover>
@@ -64,106 +84,6 @@
     </v-container>
 
     <Filters v-model="filterationsDialog" />
-
-    <!-- Dialogs -->
-    <v-dialog v-model="cardPreviewDialog" width="70%">
-      <v-card v-if="cardDetails" class="py-3 px-10">
-        <v-icon color="primary" :size="88">{{ cardDetails?.icon }}</v-icon>
-        <v-card-title class="text-h4 primary--text px-2 py-0">
-          {{ cardDetails?.title }}
-        </v-card-title>
-        <div
-          v-for="(key, i) in Object.keys(cardDetails)"
-          :key="i"
-          class="px-2 grey--text mt-3"
-        >
-          <template
-            v-if="
-              ![
-                'id',
-                'title',
-                'rate',
-                'icon',
-                'questions',
-                'standards',
-              ].includes(key)
-            "
-          >
-            <template v-if="key !== 'completionRate'">
-              <div class="d-flex">
-                <div style="min-width: 100px" class="d-flex font-weight-bold">
-                  {{ credits[key] }}:
-                </div>
-                <span>{{ cardDetails[key] }}</span>
-              </div>
-            </template>
-            <template v-else>
-              <div class="d-flex align-center">
-                <strong class="me-3">{{ credits[key] }}: </strong>
-                <div class="d-flex align-center">
-                  <span>{{ cardDetails.completionRate * 100 || 0 }}%</span>
-                  <v-progress-circular
-                    :width="3"
-                    :rotate="-90"
-                    :size="14"
-                    class="mx-3"
-                    :value="cardDetails.completionRate * 100 || 0"
-                    :color="
-                      completionRateColor(cardDetails.completionRate * 100 || 0)
-                    "
-                  >
-                  </v-progress-circular>
-                </div>
-              </div>
-            </template>
-          </template>
-        </div>
-        <v-divider class="mt-6"></v-divider>
-        <v-card flat class="px-2">
-          <v-card-title class="text-h5 primary--text px-0">
-            الاسئلة الخاصة بالبطاقة
-          </v-card-title>
-          <v-simple-table dense>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th>السؤال</th>
-                  <th>الأجابة</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(question, i) in cardDetails.questions" :key="i">
-                  <td>{{ question.title }}</td>
-                  <td>{{ question.answer }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-        </v-card>
-        <v-divider class="mt-6"></v-divider>
-        <v-card flat class="px-2">
-          <v-card-title class="text-h5 primary--text px-0">
-            المعايير الخاصة بالبطاقة
-          </v-card-title>
-          <v-simple-table dense>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th>المعيار</th>
-                  <th>الوصف</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(standard, i) in cardDetails.standards" :key="i">
-                  <td>{{ standard.title }}</td>
-                  <td>{{ standard.description }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-        </v-card>
-      </v-card>
-    </v-dialog>
   </v-card>
 </template>
 
@@ -180,6 +100,7 @@ export default {
     return {
       filterationsDialog: false,
       cardPreviewDialog: false,
+      expandAll: false,
       cardDetails: null,
     };
   },

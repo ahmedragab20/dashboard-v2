@@ -95,6 +95,10 @@ export default {
       type: Object,
       required: true,
     },
+    expandAll: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -106,14 +110,16 @@ export default {
       return credits;
     },
   },
+  watch: {
+    expandAll(newValue, oldValue) {
+      this.expand = newValue;
+    },
+  },
   methods: {
     completionRateColor(value) {
       if (value < 50) return "amber";
       if (value < 75) return "info";
       return "success";
-    },
-    openDetails() {
-      this.$emit("openDetails", this.item);
     },
   },
 };
