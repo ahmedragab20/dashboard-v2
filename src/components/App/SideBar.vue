@@ -14,7 +14,8 @@
         v-for="({ name, url, icon, children }, index) in sidebarLinks"
         :key="index"
         link
-        class="white--text"
+        class="white--text rounded-xl"
+        active-class="rounded-xl elevation-2 overflow-hidden"
         :class="!children.length ? 'px-3' : 'px-0'"
         :color="!children.length ? 'white' : 'transparent'"
         dark
