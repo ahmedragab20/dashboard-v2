@@ -5,8 +5,7 @@
     :height="height"
     :class="extraClasses"
     dark
-    tile
-  >
+    tile>
     <v-list v-model="open" class="pa-3">
       <v-sheet class="transparent px-3 pb-5" dark>
         <component :is="logo" class="transparent" />
@@ -18,8 +17,7 @@
             :value="link"
             :color="isActive(link) ? 'primary' : ''"
             rounded
-            active-class="white rounded elevation-5"
-          >
+            active-class="white rounded elevation-5">
             <template v-slot:prepend>
               <v-icon>{{ link.icon }}</v-icon>
             </template>
@@ -39,8 +37,7 @@
                 v-bind="props"
                 :title="`${link.name}`"
                 :prepend-icon="link.icon"
-                dark
-              ></v-list-item>
+                dark></v-list-item>
             </template>
 
             <div v-for="(childLink, i) in link.children" :key="i">
@@ -51,8 +48,7 @@
                 :value="link.name"
                 :title="childLink.name"
                 :prepend-icon="childLink.icon"
-                dark
-              ></v-list-item>
+                dark></v-list-item>
             </div>
           </v-list-group>
         </template>
@@ -121,6 +117,12 @@ export default {
               icon: "mdi-contrast-box",
             },
           ],
+        },
+        {
+          name: "التدقيق والمراجعة",
+          url: "/revision",
+          icon: "mdi-format-list-checks",
+          children: [],
         },
       ],
     };
