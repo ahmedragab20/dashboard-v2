@@ -13,12 +13,7 @@
               </div>
               <div class="d-flex justify-end">
                 <div class="d-flex">
-                  <v-btn
-                    @click="toggleAddQuestionDialog"
-                    color="primary"
-                    outlined
-                    rounded
-                  >
+                  <v-btn @click="toggleAddQuestionDialog" color="primary" outlined rounded>
                     <v-icon> mdi-plus</v-icon>
                     <span class="mx-2">اضافة سؤال جديد</span>
                   </v-btn>
@@ -55,13 +50,7 @@
         </v-row>
       </v-card>
 
-      <transition-group
-        id="v-row-div"
-        appear
-        tag="div"
-        @before-enter="beforeEnter"
-        @enter="enter"
-      >
+      <transition-group id="v-row-div" appear tag="div" @before-enter="beforeEnter" @enter="enter">
         <template>
           <v-col
             cols="4"
@@ -96,26 +85,28 @@
           <v-container fluid>
             <v-row no-gutters>
               <v-col cols="12">
-                <v-text-field
-                  dense
-                  label="عنوان "
-                  required
-                  outlined
-                  hide-details
-                ></v-text-field>
+                <v-text-field dense label="عنوان " required outlined hide-details></v-text-field>
               </v-col>
               <v-divider class="my-4"></v-divider>
               <v-col cols="12">
-                <v-card
-                  flat
-                  class="d-flex justify-space-between align-center py-0"
-                >
+                <v-card flat class="d-flex justify-space-between align-center py-0">
                   <v-card-title class="px-0">
                     <span class="text-h6">اضافة سؤال</span>
                   </v-card-title>
                   <v-btn icon>
                     <v-icon>mdi-plus</v-icon>
                   </v-btn>
+                </v-card>
+              </v-col>
+              <v-col cols="12">
+                <v-card flat>
+                  <v-select
+                    :items="['checkbox', 'Radio', 'Text']"
+                    label="نوع السؤال"
+                    outlined
+                    dense
+                    clearable
+                  ></v-select>
                 </v-card>
               </v-col>
               <v-col cols="12">
@@ -147,12 +138,7 @@
                     <v-autocomplete
                       dense
                       outlined
-                      :items="[
-                        'امانة الرياض',
-                        'امانة جده',
-                        'وزارة الدفاع',
-                        'وزارة الصحة',
-                      ]"
+                      :items="['امانة الرياض', 'امانة جده', 'وزارة الدفاع', 'وزارة الصحة']"
                       label="الجهة الحكومية*"
                       hint="اختر الجهة الحكومية التي تنطبق عليها الاسئلة"
                     ></v-autocomplete>
@@ -171,13 +157,7 @@
                       :show-size="1000"
                     >
                       <template v-slot:selection="{ index, text }">
-                        <v-chip
-                          v-if="index < 2"
-                          color="deep-purple accent-4"
-                          dark
-                          label
-                          small
-                        >
+                        <v-chip v-if="index < 2" color="deep-purple accent-4" dark label small>
                           {{ text }}
                         </v-chip>
 
@@ -191,10 +171,7 @@
                     </v-file-input>
                   </v-col>
                   <v-col cols="12">
-                    <v-card
-                      flat
-                      class="d-flex justify-space-between align-center"
-                    >
+                    <v-card flat class="d-flex justify-space-between align-center">
                       <!-- required question -->
                       <v-switch label="السؤال مطلوب" color="primary"></v-switch>
                       <div class="d-flex">
@@ -215,97 +192,90 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="pb-5">
-          <v-btn
-            color="primary"
-            block
-            rounded
-            @click="addQuestionDialog = false"
-          >
-            اضافة
-          </v-btn>
+          <v-btn color="primary" block rounded @click="addQuestionDialog = false"> اضافة </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
   </v-card>
 </template>
 <script>
-import gsap from "gsap";
-import QuesCard from "./-components/QuesCard.vue";
-import { makeItLikeVRow } from "@/utils/helpers";
+  import gsap from 'gsap';
+  import QuesCard from './-components/QuesCard.vue';
+  import { makeItLikeVRow } from '@/utils/helpers';
 
-export default {
-  components: {
-    QuesCard,
-  },
-  data() {
-    return {
-      Items: [
-        {
-          rate: 3.3,
-          ques: "  الى اى مدى يجب ان تكون كلمة المرور معقدة ؟",
-          ans: "يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها",
-          status: "تم الإجابة",
-          grade: 75,
-          gradeTitle: "نسبة التطابق",
-        },
-        {
-          rate: 4.5,
-          ques: "ما هي بعض النصائح لزيادة الإنتاجية في العمل؟",
-          ans: "يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها",
-          status: "تم الإجابة",
-          grade: 90,
-          gradeTitle: "ممتاز",
-        },
-        {
-          rate: 2.8,
-          ques: "ما هي فوائد التأمل؟",
-          ans: "يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها",
-          status: "تم الإجابة",
-          grade: 60,
-          gradeTitle: "مقبول",
-        },
-        {
-          rate: 3.2,
-          ques: "كيف يمكن تحسين الذاكرة؟",
-          ans: "يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها",
-          status: "تم الإجابة",
-          grade: 80,
-          gradeTitle: "جيد جدًا",
-        },
-        {
-          rate: 1.5,
-          ques: "ما هو التعلم عن بُعد؟",
-          ans: "يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها",
-          status: "تم الإجابة",
-          grade: 68,
-          gradeTitle: "جيد",
-        },
-      ],
-      addQuestionDialog: false,
-      files: [],
-    };
-  },
-  methods: {
-    beforeEnter(el) {
-      el.style.opacity = 0;
-      el.style.transform = "translateX(-100px)";
+  export default {
+    components: {
+      QuesCard,
     },
-    enter(el, done) {
-      gsap.to(el, {
-        opacity: 1,
-        x: 0,
-        duration: 0.3,
-        onComplete: done,
-        delay: el.dataset.index * 0.1,
-      });
+    data() {
+      return {
+        Items: [
+          {
+            rate: 3.3,
+            ques: '  الى اى مدى يجب ان تكون كلمة المرور معقدة ؟',
+            ans: 'يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها',
+            status: 'تم الإجابة',
+            grade: 75,
+            gradeTitle: 'نسبة التطابق',
+          },
+          {
+            rate: 4.5,
+            ques: 'ما هي بعض النصائح لزيادة الإنتاجية في العمل؟',
+            ans: 'يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها',
+            status: 'تم الإجابة',
+            grade: 90,
+            gradeTitle: 'ممتاز',
+          },
+          {
+            rate: 2.8,
+            ques: 'ما هي فوائد التأمل؟',
+            ans: 'يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها',
+            status: 'تم الإجابة',
+            grade: 60,
+            gradeTitle: 'مقبول',
+          },
+          {
+            rate: 3.2,
+            ques: 'كيف يمكن تحسين الذاكرة؟',
+            ans: 'يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها',
+            status: 'تم الإجابة',
+            grade: 80,
+            gradeTitle: 'جيد جدًا',
+          },
+          {
+            rate: 1.5,
+            ques: 'ما هو التعلم عن بُعد؟',
+            ans: 'يجب الا تكون كلمه عاديةو ويجب ان تتضمن مجموعة من الاحرف والارقام والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها',
+            status: 'تم الإجابة',
+            grade: 68,
+            gradeTitle: 'جيد',
+          },
+        ],
+        addQuestionDialog: false,
+        files: [],
+      };
     },
-    toggleAddQuestionDialog() {
-      this.addQuestionDialog = !this.addQuestionDialog;
+    methods: {
+      beforeEnter(el) {
+        el.style.opacity = 0;
+        el.style.transform = 'translateX(-100px)';
+      },
+      enter(el, done) {
+        gsap.to(el, {
+          opacity: 1,
+          x: 0,
+          duration: 0.3,
+          onComplete: done,
+          delay: el.dataset.index * 0.1,
+        });
+      },
+      toggleAddQuestionDialog() {
+        this.addQuestionDialog = !this.addQuestionDialog;
+      },
     },
-  },
-  mounted() {
-    const vRowDiv = document.getElementById("v-row-div");
-    makeItLikeVRow(vRowDiv);
-  },
-};
+    mounted() {
+      const vRowDiv = document.getElementById('v-row-div');
+      makeItLikeVRow(vRowDiv);
+    },
+  };
 </script>

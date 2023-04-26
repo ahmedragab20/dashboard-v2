@@ -11,7 +11,7 @@
             </div>
           </v-col>
           <v-col cols="12" class="pb-10">
-            <v-card flat>
+            <v-card flat class="px-1">
               <v-card-title class="primary--text"> تصفية</v-card-title>
               <v-card-subtitle class="grey--text">
                 تصفية البطاقات بواسطة البيانات التالية
@@ -20,13 +20,13 @@
                 <v-text-field
                   dense
                   outlined
-                  rounded
                   label="البحث باسم الجهة"
                   prepend-inner-icon="mdi-magnify"
                   single-line
                   hide-details
                   clear-icon="mdi-close-circle"
                   clearable
+                  color="primary"
                 ></v-text-field>
               </v-col>
             </v-card>
@@ -36,7 +36,6 @@
                   <v-text-field
                     dense
                     outlined
-                    rounded
                     type="number"
                     label="المدة المتوقعة للانجاز بالأيام"
                   ></v-text-field>
@@ -77,24 +76,40 @@
               </v-row>
             </v-card>
             <v-card flat class="px-4">
-              <div class="d-flex">
-                <v-switch
-                  v-model="mostCompletionRate"
-                  label="الجهة التي تحتوي على أكبر معدل انجاز"
-                ></v-switch>
-              </div>
-              <div class="d-flex">
-                <v-switch
-                  v-model="hasTheMostExperts"
-                  label="الجهة التي تحتوي على أكبر عدد من الخبراء"
-                ></v-switch>
-              </div>
-              <div class="d-flex">
-                <v-switch
-                  v-model="mostRating"
-                  label="الجهة التي تحتوي على أكبر معدل تقييم"
-                ></v-switch>
-              </div>
+              <v-row no-gutters>
+                <v-col cols="12" sm="6">
+                  <div class="d-flex">
+                    <v-switch
+                      v-model="mostCompletionRate"
+                      label="الجهة التي تحتوي على أكبر معدل انجاز"
+                    ></v-switch>
+                  </div>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <div class="d-flex ps-5">
+                    <v-switch
+                      v-model="hasTheMostExperts"
+                      label="الجهة التي تحتوي على أكبر عدد من الخبراء"
+                    ></v-switch>
+                  </div>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <div class="d-flex">
+                    <v-switch
+                      v-model="mostRating"
+                      label="الجهة التي تحتوي على أكبر معدل تقييم"
+                    ></v-switch>
+                  </div>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <div class="d-flex ps-5">
+                    <v-switch
+                      v-model="mostRecent"
+                      label="الجهة التي تحتوي على أحدث تاريخ انجاز"
+                    ></v-switch>
+                  </div>
+                </v-col>
+              </v-row>
 
               <v-card-actions>
                 <v-btn
@@ -133,6 +148,7 @@ export default {
       mostCompletionRate: false,
       hasTheMostExperts: false,
       mostRating: false,
+      mostRecent: false,
       date1: format(parseISO(new Date().toISOString()), "yyyy-MM-dd"),
       date2: format(parseISO(new Date().toISOString()), "yyyy-MM-dd"),
       menu1: false,

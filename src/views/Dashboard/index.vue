@@ -1,16 +1,10 @@
 <template>
   <v-container>
     <v-row no-gutters justify="space-between">
-      <v-card flat class="transparent">
+      <v-card flat class="transparent py-0">
         <v-card-title class="text-h4 font-bold primary--text">
           {{ dashboard.homepage }}
         </v-card-title>
-        <div>
-          <v-card-subtitle style="opacity: 1" class="py-0">
-            {{ dashboard.weHappyThatYourBack }}،
-            <span class="text-h6">يا زيد 👋💜️</span>
-          </v-card-subtitle>
-        </div>
       </v-card>
       <!-- Time Dialog -->
       <v-dialog v-model="timeDialog" width="auto" class="rounded-xl">
@@ -30,7 +24,7 @@
         <Timer />
       </v-dialog>
     </v-row>
-    <v-card flat class="mt-10 pa-3 transparent">
+    <v-card flat class="pa-3 transparent">
       <!---- Simple card --->
       <transition-group
         id="v-row-div"
@@ -52,78 +46,234 @@
       </transition-group>
     </v-card>
     <!-- Charts -->
-    <v-card flat rounded class="transparent mt-5 pa-3">
+    <v-card flat class="mt-5 pa-3" rounded="xl">
       <v-card-title class="text-h5 font-bold primary--text">
         {{ dashboard.charts }}
       </v-card-title>
-      <chart-row
-        v-for="(chart, i) in chartDivs"
-        :key="i"
-        :item="chart"
-        :index="i"
-        :items="chartDivs"
-        class="py-6"
-        :columns="i === 1"
-      >
-        <template #start>
-          <!-- Circular Progress -->
-          <v-card flat class="mt-8 mx-auto transparent" max-width="500px">
-            <v-card-title class="primary--text">
-              {{ dashboard.governmentStandards }}
-            </v-card-title>
-            <v-card-subtitle>
-              {{ dashboard.governmentStandardsDescription }}
-            </v-card-subtitle>
-            <div class="d-flex justify-center mt-10">
-              <div class="text-center">
-                <v-progress-circular
-                  class="mx-3"
-                  :size="128"
-                  :width="12"
-                  :rotate="-90"
-                  :value="92"
-                  color="success"
-                >
-                  <span class="text-h5 font-weight-bold"> 92% </span>
-                </v-progress-circular>
-                <v-card-text class="text-h5"> معدل الإنجاز </v-card-text>
-              </div>
-            </div>
-          </v-card>
-        </template>
-        <template #end>
-          <!-- Charts Card -->
-          <v-card flat class="transparent">
-            <v-row>
-              <v-col cols="12" sm="6">
-                <v-select
-                  v-model="selectedFilter"
-                  :items="filters"
-                  :label="dashboard.filters"
-                  color="primary"
-                  class="transparent"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-select
-                  v-model="chartType"
-                  :items="chartTypes"
-                  :label="dashboard.changeTheChartView"
-                  color="primary"
-                  class="transparent"
-                ></v-select>
-              </v-col>
-            </v-row>
+      <v-card-subtitle>
+        {{ dashboard.chartsSubtitle }}
+      </v-card-subtitle>
+      <v-card flat color="transparent">
+        <v-row justify="space-between" align="center">
+          <v-col cols="12" sm="6">
+            <v-card flat class="transparent">
+              <v-card-title class="text-h6 font-bold primary--text">
+                {{ dashboard.filters }}
+              </v-card-title>
+              <v-card-text>
+                <v-row no-gutters>
+                  <v-col cols="12" sm="6" class="pb-0">
+                    <v-select
+                      clearable
+                      v-model="selectedFilter"
+                      :items="filters"
+                      label="الفلتر"
+                      outlined
+                      rounded="xl"
+                      dense
+                      color="primary"
+                      hide-details
+                    />
+                  </v-col>
+                  <v-col cols="12">
+                    <v-card-title
+                      class="text-h6 font-bold primary--text pb-2 px-0"
+                    >
+                      تلخيص البيانات
+                    </v-card-title>
+                    <v-card flat>
+                      <v-row class="pa-4" justify="space-between">
+                        <v-col cols="12" sm="6" class="text-center">
+                          <v-card
+                            flat
+                            class="d-flex align-center flex-column justify-center"
+                          >
+                            <v-progress-circular
+                              style="transform: rotate(-90deg)"
+                              :value="30"
+                              size="70"
+                              width="10"
+                              color="accent"
+                              class="mx-auto"
+                            ></v-progress-circular>
+                            <v-card-title
+                              class="text-h6 font-bold accent--text"
+                            >
+                              30%
+                            </v-card-title>
+                            <v-card-subtitle
+                              class="accent white--text py-1 rounded-xl font-weight-bold"
+                            >
+                              جارية
+                            </v-card-subtitle>
+                          </v-card>
+                        </v-col>
+                        <v-col cols="12" sm="6" class="text-center">
+                          <v-card
+                            flat
+                            class="d-flex align-center flex-column justify-center"
+                          >
+                            <v-progress-circular
+                              style="transform: rotate(-90deg)"
+                              :value="70"
+                              size="70"
+                              width="10"
+                              color="primary"
+                              class="mx-auto"
+                            ></v-progress-circular>
+                            <v-card-title
+                              class="text-h6 font-bold primary--text"
+                            >
+                              70%
+                            </v-card-title>
+                            <v-card-subtitle
+                              class="primary white--text py-1 rounded-xl font-weight-bold"
+                            >
+                              مكتملة
+                            </v-card-subtitle>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-card>
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-card class="pa-4" rounded="xl" elevation="10">
+              <chart
+                :key="chartType"
+                :type="chartType"
+                :datasets="chartData"
+                :labels="chartLabels"
+                :options="chartOptions"
+              />
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card>
+      <v-card-title>
+        <v-btn
+          depressed
+          fab
+          text
+          color="primary"
+          @click="
+            chartType =
+              chartTypes[chartTypes.indexOf(chartType) + 1] || chartTypes[0]
+          "
+        >
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
+        <v-btn
+          depressed
+          fab
+          text
+          color="primary"
+          @click="
+            chartType =
+              chartTypes[chartTypes.indexOf(chartType) - 1] || chartTypes[0]
+          "
+        >
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-title class="mb-5 primary--text">
+        البيانات الخاصة بالمشروع
+      </v-card-title>
+      <v-card-subtitle>
+        هذه البيانات تم تحديثها بشكل دوري وهي متوفرة للمستخدمين
+      </v-card-subtitle>
+      <v-card flat>
+        <v-row class="pa-4" justify="space-between">
+          <v-col cols="12" sm="6" class="text-center">
+            <v-card flat class="d-flex align-center flex-column justify-center">
+              <v-progress-circular
+                style="transform: rotate(-90deg)"
+                :value="30"
+                size="70"
+                width="10"
+                color="accent"
+                class="mx-auto"
+              ></v-progress-circular>
+              <v-card-title class="text-h6 font-bold accent--text">
+                30%
+              </v-card-title>
+              <v-card-subtitle
+                class="accent white--text py-1 rounded-xl font-weight-bold"
+              >
+                جارية
+              </v-card-subtitle>
+            </v-card>
+          </v-col>
+          <v-col cols="12" sm="6" class="text-center">
+            <v-card flat class="d-flex align-center flex-column justify-center">
+              <v-progress-circular
+                style="transform: rotate(-90deg)"
+                :value="70"
+                size="70"
+                width="10"
+                color="primary"
+                class="mx-auto"
+              ></v-progress-circular>
+              <v-card-title class="text-h6 font-bold primary--text">
+                70%
+              </v-card-title>
+              <v-card-subtitle
+                class="primary white--text py-1 rounded-xl font-weight-bold"
+              >
+                مكتملة
+              </v-card-subtitle>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card>
+      <v-row class="pa-4" justify="space-between">
+        <v-col cols="12" sm="6" class="text-center">
+          <v-card flat class="d-flex align-center flex-column justify-center">
             <chart
               :key="chartType"
-              :type="chartType"
+              type="doughnut"
               :datasets="chartData"
               :labels="chartLabels"
               :options="chartOptions"
             />
           </v-card>
-        </template>
-      </chart-row>
+        </v-col>
+        <v-col cols="12" sm="6" class="text-center">
+          <v-card flat class="d-flex align-center flex-column justify-center">
+            <chart
+              :key="chartType"
+              type="doughnut"
+              :datasets="chartData"
+              :labels="chartLabels"
+              :options="chartOptions"
+            />
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-divider></v-divider>
+      <v-card flat>
+        <v-card-title class="mb-5 primary--text">
+          بعض البيانات العامة الخاصة بالمشروع
+        </v-card-title>
+        <v-card-subtitle>
+          هذة البيانات ليست متوفرة للمستخدمين وهي مخصصة للمشرفين فقط
+        </v-card-subtitle>
+        <v-row no-gutters>
+          <v-col cols="12">
+            <chart
+              :key="chartType"
+              type="line"
+              :datasets="chartData"
+              :labels="chartLabels"
+              :options="chartOptions"
+            />
+          </v-col>
+        </v-row>
+      </v-card>
     </v-card>
   </v-container>
 </template>
@@ -156,12 +306,7 @@ export default {
       ],
       chartLabels: ["January", "February", "March", "April", "May"],
       chartOptions: {
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-          "rgb(75, 192, 192)",
-        ],
+        backgroundColor: ["#3d3870", "#82B1FF"],
         hoverOffset: 9,
         responsive: true,
       },

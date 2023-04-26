@@ -8,11 +8,13 @@ export const general = {
 };
 export const dashboard = {
   title: "هيئة الحكومة الرقمية",
+  subtitle: "تطبيق هيئة الحكومة الرقمية",
   homepage: "الصفحة الرئيسية",
   welcomeToTheHomepage: "مرحبا بك في الصفحة الرئيسية",
   weHappyThatYourBack: "ان شاء الله يومك سعيد",
   displayTheRemainedTime: "عرض الوقت المتبقي",
   charts: "الرسوم البيانية",
+  chartsSubtitle: "يمكنك متابعة اخر الاحصائيات من هنا",
   changeTheChartView: "تغيير طريقة عرض الرسوم البيانية",
   filters: "الفلاتر",
   governmentStandards: "معايير الجهات الحكوميه",
