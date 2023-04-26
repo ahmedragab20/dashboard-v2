@@ -4,8 +4,7 @@
     :color="mainColor"
     :height="height"
     :class="extraClasses"
-    tile
-  >
+    tile>
     <v-list v-model="open" class="pa-3">
       <v-sheet class="transparent px-3 pb-5" dark>
         <component :is="logo" class="transparent" />
@@ -19,15 +18,13 @@
         :class="!children.length ? 'px-3' : 'px-0'"
         :color="!children.length ? 'white' : 'transparent'"
         dark
-        :to="url"
-      >
+        :to="url">
         <v-list-item-icon v-if="!children.length">
           <v-icon color="white" v-text="icon"></v-icon>
         </v-list-item-icon>
         <v-list-item-title
           v-if="!children.length"
-          v-text="name"
-        ></v-list-item-title>
+          v-text="name"></v-list-item-title>
         <template v-if="children.length">
           <v-list-group :value="true" color="white" no-action sub-group>
             <template v-slot:activator>
@@ -45,8 +42,7 @@
               color="white"
               class="white--text ps-10 rounded-xl"
               active-class="rounded-xl elevation-2"
-              :to="url"
-            >
+              :to="url">
               <v-list-item-icon>
                 <v-icon color="white" v-text="icon"></v-icon>
               </v-list-item-icon>
@@ -123,6 +119,12 @@ export default {
               children: [],
             },
           ],
+        },
+        {
+          name: "التدقيق والمراجعة",
+          url: "/revision",
+          icon: "mdi-credit-card",
+          children: [],
         },
         {
           name: "Components ",

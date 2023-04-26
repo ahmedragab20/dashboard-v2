@@ -28,6 +28,16 @@ const routes = [
         name: "questions",
         component: () => import("@/views/Questions/index.vue"),
       },
+      {
+        path: "/revision",
+        name: "revision",
+        component: () => import("@/views/Revision/index.vue"),
+      },
+      {
+        path: "/revision/revision-one",
+        name: "revision-one",
+        component: () => import("@/views/Revision/-Components/checkOne.vue"),
+      },
     ],
   },
   {
