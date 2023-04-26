@@ -109,68 +109,167 @@
       </transition-group>
     </v-card>
     <!-- dialog --->
-    <v-dialog v-model="checkDialog" width="500" persistent>
-      <v-card class="px-4">
-        <v-row no-gutters>
-          <v-col cols="10">
-            <v-card-title class="text-h5 primary--text px-0">
-              اضافة معيار جديد
-            </v-card-title>
-            <v-card-subtitle class="px-0 grey--text"
-              >من فضلك ادخل بيانات المعيار الجديد
-            </v-card-subtitle>
-          </v-col>
-          <v-col cols="2">
-            <div class="d-flex justify-end align-center py-3">
-              <v-btn icon @click="checkDialog = false">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
+    <v-dialog v-model="checkDialog" width="700" persistent>
+      <v-card class="px-0" color="#eee">
+        <v-card-title
+          class="d-flex justify-space-between align-start ma-0 pa-0">
+          <div
+            style="border-top-right-radius: 0px; border-bottom-left-radius: 8px"
+            class="primary white--text py-1 px-3 font-weight-light text-subtitle-1">
+            1
+          </div>
+          <v-spacer></v-spacer>
+          <div class="error--text h3 pa-1 pl-3">*</div>
+        </v-card-title>
+        <div class="d-flex justify-space-between align-center px-3">
+          <div class="primary--text font-weight-black">
+            ما مدى قوة كلمة المرور الخاصه بك ؟
+          </div>
+          <div class="grey--text lighten-3 font-weight-bold">
+            المدة الزمنية للحل : 30 ثانية
+          </div>
+        </div>
+        <div class="d-flex justify-space-between align-center px-3 pr-7">
+          <div>
+            <span class="grey--text lighten-3 font-weight-bold ml-2"
+              >اظهار الاجابة</span
+            >
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  v-on="on"
+                  depressed
+                  icon
+                  small
+                  @click="showresult = !showresult">
+                  <v-icon color="primary" v-if="showresult == true"
+                    >mdi-arrow-up</v-icon
+                  >
+                  <v-icon color="primary" v-else>mdi-arrow-down</v-icon>
+                </v-btn>
+              </template>
+              <span>اظهار الاجابة</span>
+            </v-tooltip>
+          </div>
+          <div
+            class="d-flex justify-space-between align-center font-weight-bold">
+            <div class="primary--text">
+              <v-icon color="success">mdi-circle-medium</v-icon>
+              اجابة الجهة
             </div>
-          </v-col>
-        </v-row>
-        {{ radioCheck }}
-        <v-divider></v-divider>
-        <v-card-text>
-          <v-radio-group active-class="bg-active" v-model="radioCheck" column>
+            <div class="primary--text">
+              <v-icon color="error">mdi-circle-medium</v-icon>
+              اجابة المدقق
+            </div>
+            <div class="primary--text">
+              <v-icon color="primary">mdi-circle-medium</v-icon>
+              اجابة متطابقة
+            </div>
+          </div>
+        </div>
+        <v-lazy>
+          <div class="grey--text lighten-3 px-3" v-if="showresult == true">
+            يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام
+            والرموز الخاصة فى الدورات التدريبيه التى نقدمها نعلم المتدربيين حيلا
+            بسيطة لانشاء كلمات مرور ذكية يسهل تذكرها
+          </div>
+        </v-lazy>
+
+        <v-divider class="mt-3"></v-divider>
+        <v-card-text class="px-3">
+          <v-radio-group
+            active-class="bg-active"
+            class="font-weight-black"
+            v-model="radioCheck"
+            column>
             <v-radio
-              label="primary"
-              style="background-color: white; padding: 10px"
+              color="white"
+              label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
+              style="
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+              "
               value="primary">
             </v-radio>
             <v-radio
-              label="info"
-              style="background-color: white; padding: 10px"
-              value="info">
+              color="white"
+              label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
+              style="
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+              "
+              value="info"
+              checked>
             </v-radio>
             <v-radio
-              label="danger"
-              style="background-color: white; padding: 10px"
+              color="white"
+              label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
+              style="
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+              "
               value="danger">
             </v-radio>
             <v-radio
-              label="secondary"
-              style="background-color: white; padding: 10px"
+              color="white"
+              label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
+              style="
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+              "
               value="secondary">
             </v-radio>
           </v-radio-group>
+          <v-col class="py-0" cols="12">
+            <div class="grey--text lighten-4 h5">ملاحظة الخبير</div>
+            <v-text-field
+              outlined
+              multi-line
+              rows="3"
+              placeholder="ملاحظة الخبير"
+              background-color="white"></v-text-field>
+          </v-col>
+          <v-col class="py-0" cols="12">
+            <div class="grey--text lighten-4 h5">ملاحظة المدقق الاول</div>
+            <v-text-field
+              outlined
+              multi-line
+              rows="3"
+              placeholder="ملاحظة المدقق الاول"
+              background-color="white"></v-text-field>
+          </v-col>
+          <v-col class="py-0" cols="12">
+            <div class="grey--text lighten-4 h5">ملاحظة المدقق الثانى</div>
+            <v-text-field
+              outlined
+              multi-line
+              rows="3"
+              placeholder="ملاحظة المدقق الثانى"
+              background-color="white"></v-text-field>
+          </v-col>
         </v-card-text>
 
-        <v-card-actions class="px-0 py-4">
-          <v-spacer></v-spacer>
+        <v-card-actions class="px-2 py-4 d-flex justify-end">
           <v-btn
             color="primary"
-            block
             rounded
             @click="(checkDialog = false), (snackbar = true)">
             <v-icon>mdi-plus</v-icon>
-            اضافة معيار
+            اصدار تقرير
+          </v-btn>
+          <v-btn color="error" rounded outlined @click="checkDialog = false">
+            اغلاق
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <v-snackbar v-model="snackbar" color="primary">
       <v-icon> mdi-check</v-icon>
-      تم اضافة المعيار بنجاح
+      تم المراجعة بنجاح
     </v-snackbar>
   </v-container>
 </template>
@@ -180,7 +279,8 @@ import { makeItLikeVRow } from "@/utils/helpers";
 export default {
   data() {
     return {
-      radioCheck: "",
+      showresult: false,
+      radioCheck: "info",
       search: "",
       checkDialog: false,
       snackbar: false,
@@ -332,5 +432,9 @@ export default {
   background-color: #3d3870 !important;
   color: yellow !important;
   padding: 10px;
+  border-radius: 10px;
+}
+.bg-active * {
+  color: white !important;
 }
 </style>

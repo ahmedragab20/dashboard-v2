@@ -40,7 +40,7 @@
                     </div>
                     <v-btn
                       link
-                      to="/revision-one"
+                      to="revision/revision-one"
                       color="primary"
                       class="h5 font-weight-bold"
                       >التدقيق

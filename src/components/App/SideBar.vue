@@ -121,6 +121,12 @@ export default {
           ],
         },
         {
+          name: "التدقيق والمراجعة",
+          url: "/revision",
+          icon: "mdi-credit-card",
+          children: [],
+        },
+        {
           name: "Components ",
           url: "/dummy/blank",
           children: [],
