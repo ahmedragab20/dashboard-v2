@@ -11,79 +11,80 @@
           </div>
         </v-col>
       </v-row>
-
-      <transition-group
-        id="v-row-div"
-        appear
-        tag="div"
-        @before-enter="beforeEnter"
-        @enter="enter">
-        <template>
-          <v-col
-            cols="12"
-            lg="4"
-            md="6"
-            sm="12"
-            v-for="item in items"
-            :key="item.name">
-            <v-hover>
-              <template v-slot="{ hover }">
-                <v-card
-                  :elevation="hover ? 12 : 2"
-                  @mouseover="item.show = true"
-                  @mouseleave="item.show = false"
-                  class="mx-2 my-2 pa-3">
-                  <v-card-title
-                    class="d-flex justify-space-between align-center">
-                    <div class="h5 font-weight-bold primary--text">
-                      امانة الرياض
-                    </div>
-                    <v-btn
-                      link
-                      to="revision/revision-one"
-                      color="primary"
-                      class="h5 font-weight-bold"
-                      >التدقيق
-                      <v-icon class="mr-1">mdi-arrow-left</v-icon>
-                    </v-btn>
-                  </v-card-title>
-                  <v-card-text class="mt-2">
-                    <v-row v-if="!item.show">
-                      <v-col>
-                        <v-progress-linear
-                          height="20"
-                          :color="completionRateColor(item.rate)"
-                          :value="item.rate">
-                          {{ item.rate }}% مكتمل
-                        </v-progress-linear>
-                      </v-col>
-                    </v-row>
-                    <v-row v-if="item.show">
-                      <v-col cols="6"
-                        ><v-progress-linear
-                          height="20"
-                          :color="completionRateColor(item.rate)"
-                          :value="item.rate">
-                          {{ item.rate }}% مكتمل
-                        </v-progress-linear></v-col
-                      >
-                      <v-col cols="6"
-                        ><v-progress-linear
-                          height="20"
-                          :color="completionRateColor(item.rate)"
-                          :value="item.rate">
-                          {{ item.rate }}% مكتمل
-                        </v-progress-linear></v-col
-                      >
-                    </v-row>
-                  </v-card-text>
-                </v-card>
-              </template>
-            </v-hover>
-          </v-col>
-        </template>
-      </transition-group>
     </v-card>
+      <v-card flat outlined rounded="xl" class="pa-3">
+          <transition-group
+                  id="v-row-div"
+                  appear
+                  tag="div"
+                  @before-enter="beforeEnter"
+                  @enter="enter">
+              <template>
+                  <v-col
+                          cols="12"
+                          lg="4"
+                          md="6"
+                          sm="12"
+                          v-for="item in items"
+                          :key="item.name">
+                      <v-hover>
+                          <template v-slot="{ hover }">
+                              <v-card
+                                      :elevation="hover ? 12 : 2"
+                                      @mouseover="item.show = true"
+                                      @mouseleave="item.show = false"
+                                      class="mx-2 my-2 pa-3">
+                                  <v-card-title
+                                          class="d-flex justify-space-between align-center">
+                                      <div class="h5 font-weight-bold primary--text">
+                                          امانة الرياض
+                                      </div>
+                                      <v-btn
+                                              link
+                                              to="revision/revision-one"
+                                              color="primary"
+                                              class="h5 font-weight-bold"
+                                      >التدقيق
+                                          <v-icon class="mr-1">mdi-arrow-left</v-icon>
+                                      </v-btn>
+                                  </v-card-title>
+                                  <v-card-text class="mt-2">
+                                      <v-row v-if="!item.show">
+                                          <v-col>
+                                              <v-progress-linear
+                                                      height="20"
+                                                      :color="completionRateColor(item.rate)"
+                                                      :value="item.rate">
+                                                  {{ item.rate }}% مكتمل
+                                              </v-progress-linear>
+                                          </v-col>
+                                      </v-row>
+                                      <v-row v-if="item.show">
+                                          <v-col cols="6"
+                                          ><v-progress-linear
+                                                  height="20"
+                                                  :color="completionRateColor(item.rate)"
+                                                  :value="item.rate">
+                                              {{ item.rate }}% مكتمل
+                                          </v-progress-linear></v-col
+                                          >
+                                          <v-col cols="6"
+                                          ><v-progress-linear
+                                                  height="20"
+                                                  :color="completionRateColor(item.rate)"
+                                                  :value="item.rate">
+                                              {{ item.rate }}% مكتمل
+                                          </v-progress-linear></v-col
+                                          >
+                                      </v-row>
+                                  </v-card-text>
+                              </v-card>
+                          </template>
+                      </v-hover>
+                  </v-col>
+              </template>
+          </transition-group>
+      </v-card>
   </v-container>
 </template>
 <script>

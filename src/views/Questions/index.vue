@@ -1,5 +1,5 @@
 <template>
-  <v-card class="transparent">
+  <v-card flate class="transparent" min-height="100vh">
     <v-container>
       <v-card flat outlined rounded="xl" class="mb-5 pa-3">
         <v-row no-gutters>
@@ -50,28 +50,29 @@
         </v-row>
       </v-card>
 
-      <transition-group id="v-row-div" appear tag="div" @before-enter="beforeEnter" @enter="enter">
-        <template>
-          <v-col
-            cols="4"
-            lg="4"
-            md="6"
-            sm="12"
-            v-for="(item, i) in Items"
-            :key="item.rate"
-            :data-index="i"
-          >
-            <v-hover>
-              <template v-slot="{ hover }">
-                <v-card flat rounded="xl" :elevation="hover ? 12 : 2">
-                  <QuesCard :item="item"></QuesCard>
-                </v-card>
+      <v-card flat outlined class="pa-3 rounded-xl">
+          <transition-group id="v-row-div" appear tag="div" @before-enter="beforeEnter" @enter="enter">
+              <template>
+                  <v-col
+                          cols="4"
+                          lg="4"
+                          md="6"
+                          sm="12"
+                          v-for="(item, i) in Items"
+                          :key="item.rate"
+                          :data-index="i"
+                  >
+                      <v-hover>
+                          <template v-slot="{ hover }">
+                              <v-card flat rounded="xl" :elevation="hover ? 12 : 2">
+                                  <QuesCard :item="item"></QuesCard>
+                              </v-card>
+                          </template>
+                      </v-hover>
+                  </v-col>
               </template>
-            </v-hover>
-          </v-col>
-        </template>
-      </transition-group>
-
+          </transition-group>
+      </v-card>
       <div class="pb-8"></div>
     </v-container>
 

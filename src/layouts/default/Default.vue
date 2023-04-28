@@ -28,9 +28,6 @@
           >
             <v-icon>mdi-lightbulb</v-icon>
           </v-btn>
-          <div id="chat-bot">
-            <!-- <Chat /> -->
-          </div>
         </v-card-text>
       </v-card>
     </v-footer>
