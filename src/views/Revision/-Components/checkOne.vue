@@ -32,8 +32,9 @@
             :key="item.title">
             <v-hover>
               <template v-slot="{ hover }">
+                <!-- :elevation="hover ? 12 : 2" -->
                 <v-card
-                  :elevation="hover ? 12 : 2"
+                  :color="!hover ? '' : 'indigo lighten-5'"
                   class="mx-2 my-2 pa-3 text-center">
                   <v-progress-circular
                     :width="10"
@@ -132,7 +133,7 @@
         <div class="d-flex justify-space-between align-center px-3 pr-7">
           <div>
             <span class="grey--text lighten-3 font-weight-bold ml-2"
-              >اظهار الاجابة</span
+              >اظهار الاجابة النموذجية</span
             >
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
@@ -183,6 +184,7 @@
             v-model="radioCheck"
             column>
             <v-radio
+              readonly
               color="white"
               label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
               style="
@@ -193,6 +195,7 @@
               value="primary">
             </v-radio>
             <v-radio
+              readonly
               color="white"
               label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
               style="
@@ -204,6 +207,7 @@
               checked>
             </v-radio>
             <v-radio
+              readonly
               color="white"
               label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
               style="
@@ -214,6 +218,7 @@
               value="danger">
             </v-radio>
             <v-radio
+              readonly
               color="white"
               label=" يجب الا تكون كلمه عادية و ويجب ان تتضمن مجموعة من الاحرف والارقام"
               style="
@@ -259,7 +264,7 @@
             rounded
             @click="(checkDialog = false), (snackbar = true)">
             <v-icon>mdi-plus</v-icon>
-            اصدار تقرير
+            اعتماد
           </v-btn>
           <v-btn color="error" rounded outlined @click="checkDialog = false">
             اغلاق

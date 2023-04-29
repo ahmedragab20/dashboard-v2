@@ -4,18 +4,27 @@
       <v-container>
         <v-row no-gutters>
           <v-col cols="12">
-            <div class="d-flex justify-end align-center px-4 pt-1">
+            <div class="d-flex justify-space-between align-center px-4 pt-1">
+              <div>
+                <v-card-title
+                  class="primary--text h1 font-weight-black"
+                  style="font-size: 32px">
+                  تصفية</v-card-title
+                >
+                <v-card-subtitle class="grey--text">
+                  تصفية البطاقات بواسطة البيانات التالية
+                </v-card-subtitle>
+              </div>
               <v-btn @click="closeDrawer" icon size="small" color="error">
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </div>
           </v-col>
+          <v-col cols="12">
+            <v-divider></v-divider>
+          </v-col>
           <v-col cols="12" class="pb-10">
             <v-card flat class="px-1">
-              <v-card-title class="primary--text"> تصفية</v-card-title>
-              <v-card-subtitle class="grey--text">
-                تصفية البطاقات بواسطة البيانات التالية
-              </v-card-subtitle>
               <v-col cols="12">
                 <v-text-field
                   dense
@@ -26,8 +35,7 @@
                   hide-details
                   clear-icon="mdi-close-circle"
                   clearable
-                  color="primary"
-                ></v-text-field>
+                  color="primary"></v-text-field>
               </v-col>
             </v-card>
             <v-card flat class="px-4">
@@ -37,8 +45,7 @@
                     dense
                     outlined
                     type="number"
-                    label="المدة المتوقعة للانجاز بالأيام"
-                  ></v-text-field>
+                    label="المدة المتوقعة للانجاز بالأيام"></v-text-field>
                 </v-col>
                 <v-col cols="6" class="ps-4">
                   <v-card flat>
@@ -55,15 +62,13 @@
                       hide-details
                       outlined
                       rounded
-                      dense
-                    >
+                      dense>
                       <template v-slot:selection="{ item, index }">
                         <v-chip
                           pill
                           small
                           close
-                          @click:close="selectedExperts.splice(index, 1)"
-                        >
+                          @click:close="selectedExperts.splice(index, 1)">
                           <v-avatar left>
                             <v-img :src="item.image" cover></v-img>
                           </v-avatar>
@@ -81,32 +86,28 @@
                   <div class="d-flex">
                     <v-switch
                       v-model="mostCompletionRate"
-                      label="الجهة التي تحتوي على أكبر معدل انجاز"
-                    ></v-switch>
+                      label="الجهة التي تحتوي على أكبر معدل انجاز"></v-switch>
                   </div>
                 </v-col>
                 <v-col cols="12" sm="6">
                   <div class="d-flex ps-5">
                     <v-switch
                       v-model="hasTheMostExperts"
-                      label="الجهة التي تحتوي على أكبر عدد من الخبراء"
-                    ></v-switch>
+                      label="الجهة التي تحتوي على أكبر عدد من الخبراء"></v-switch>
                   </div>
                 </v-col>
                 <v-col cols="12" sm="6">
                   <div class="d-flex">
                     <v-switch
                       v-model="mostRating"
-                      label="الجهة التي تحتوي على أكبر معدل تقييم"
-                    ></v-switch>
+                      label="الجهة التي تحتوي على أكبر معدل تقييم"></v-switch>
                   </div>
                 </v-col>
                 <v-col cols="12" sm="6">
                   <div class="d-flex ps-5">
                     <v-switch
                       v-model="mostRecent"
-                      label="الجهة التي تحتوي على أحدث تاريخ انجاز"
-                    ></v-switch>
+                      label="الجهة التي تحتوي على أحدث تاريخ انجاز"></v-switch>
                   </div>
                 </v-col>
               </v-row>
@@ -117,8 +118,7 @@
                   color="primary"
                   rounded
                   class="pe-10"
-                  depressed
-                >
+                  depressed>
                   <v-icon class="pe-7 ps-3"> mdi-filter-variant</v-icon>
                   تأكيد
                 </v-btn>

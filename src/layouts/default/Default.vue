@@ -15,7 +15,7 @@
     <default-view />
 
     <!-- Footer -->
-    <v-footer elevation="0" class="d-flex justify-end" border>
+    <!-- <v-footer elevation="0" class="d-flex justify-end" border>
       <v-card flat tile color="transparent">
         <v-card-text class="text-end">
           <v-btn
@@ -30,7 +30,7 @@
           </v-btn>
         </v-card-text>
       </v-card>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 <script>

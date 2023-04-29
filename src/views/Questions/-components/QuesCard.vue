@@ -1,5 +1,11 @@
 <template>
-  <v-card class="pa-0" outlined rounded="xl" min-height="330px">
+  <v-card
+    class="pa-0"
+    density="compact"
+    color="transparent"
+    outlined
+    rounded="xl"
+    min-height="330px">
     <v-card-title class="d-flex justify-space-between align-start ma-0 pa-0">
       <div
         style="border-top-right-radius: 10px; border-bottom-left-radius: 8px"
