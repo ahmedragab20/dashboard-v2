@@ -18,7 +18,8 @@
                     @click="toggleAddQuestionDialog"
                     color="primary"
                     outlined
-                    rounded>
+                    rounded
+                  >
                     <v-icon> mdi-plus</v-icon>
                     <span class="mx-2">اضافة سؤال جديد</span>
                   </v-btn>
@@ -32,7 +33,8 @@
                       dense
                       outlined
                       rounded
-                      color="primary">
+                      color="primary"
+                    >
                     </v-select>
                   </div>
 
@@ -43,7 +45,8 @@
                       dense
                       outlined
                       offset-y
-                      rounded>
+                      rounded
+                    >
                     </v-select>
                   </div>
                 </div>
@@ -59,7 +62,8 @@
           appear
           tag="div"
           @before-enter="beforeEnter"
-          @enter="enter">
+          @enter="enter"
+        >
           <template>
             <v-col
               cols="4"
@@ -68,13 +72,16 @@
               sm="12"
               v-for="(item, i) in Items"
               :key="item.rate"
-              :data-index="i">
+              :data-index="i"
+            >
               <v-hover>
                 <template v-slot="{ hover }">
                   <v-card
                     flat
                     rounded="xl"
-                    :color="!hover ? '' : 'indigo lighten-5'">
+                    outlined
+                    :color="!hover ? '' : 'indigo lighten-5'"
+                  >
                     <QuesCard :item="item"></QuesCard>
                   </v-card>
                 </template>
@@ -101,13 +108,15 @@
                   label="عنوان "
                   required
                   outlined
-                  hide-details></v-text-field>
+                  hide-details
+                ></v-text-field>
               </v-col>
               <v-divider class="my-4"></v-divider>
               <v-col cols="12">
                 <v-card
                   flat
-                  class="d-flex justify-space-between align-center py-0">
+                  class="d-flex justify-space-between align-center py-0"
+                >
                   <v-card-title class="px-0">
                     <span class="text-h6">اضافة سؤال</span>
                   </v-card-title>
@@ -123,7 +132,8 @@
                     label="نوع السؤال"
                     outlined
                     dense
-                    clearable></v-select>
+                    clearable
+                  ></v-select>
                 </v-card>
               </v-col>
               <v-col cols="12">
@@ -133,7 +143,8 @@
                       label="السؤال"
                       required
                       outlined
-                      messages="السؤال مطلوب"></v-textarea>
+                      messages="السؤال مطلوب"
+                    ></v-textarea>
                   </v-col>
                   <v-col cols="12">
                     <v-autocomplete
@@ -147,7 +158,8 @@
                       ]"
                       label="المعيار*"
                       multiple
-                      hint="اختر المعيارات التي تنطبق عليها الاسئلة"></v-autocomplete>
+                      hint="اختر المعيارات التي تنطبق عليها الاسئلة"
+                    ></v-autocomplete>
                   </v-col>
                   <!-- <v-col cols="12">
                     <v-autocomplete
@@ -169,20 +181,23 @@
                       placeholder="اختر المرفقات"
                       prepend-icon="mdi-paperclip"
                       outlined
-                      :show-size="1000">
+                      :show-size="1000"
+                    >
                       <template v-slot:selection="{ index, text }">
                         <v-chip
                           v-if="index < 2"
                           color="deep-purple accent-4"
                           dark
                           label
-                          small>
+                          small
+                        >
                           {{ text }}
                         </v-chip>
 
                         <span
                           v-else-if="index === 2"
-                          class="text-overline grey--text text--darken-3 mx-2">
+                          class="text-overline grey--text text--darken-3 mx-2"
+                        >
                           +{{ files.length - 2 }} ملفات اخرى
                         </span>
                       </template>
@@ -191,7 +206,8 @@
                   <v-col cols="12">
                     <v-card
                       flat
-                      class="d-flex justify-space-between align-center">
+                      class="d-flex justify-space-between align-center"
+                    >
                       <!-- required question -->
                       <v-switch label="السؤال مطلوب" color="primary"></v-switch>
                       <div class="d-flex">
@@ -216,7 +232,8 @@
             color="primary"
             block
             rounded
-            @click="addQuestionDialog = false">
+            @click="addQuestionDialog = false"
+          >
             اضافة
           </v-btn>
         </v-card-actions>

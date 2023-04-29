@@ -13,7 +13,8 @@
                 @click="filterationsDialog = !filterationsDialog"
                 outlined
                 color="primary"
-                rounded>
+                rounded
+              >
                 <v-icon class="me-3"> mdi-filter-variant</v-icon>
                 <span>تصفية</span>
               </v-btn>
@@ -22,13 +23,15 @@
         </v-col>
       </v-row>
     </v-card>
+    <div class="my-4 error"></div>
     <v-card flat outlined rounded="xl" class="pa-3">
       <transition-group
         id="v-row-div"
         appear
         tag="div"
         @before-enter="beforeEnter"
-        @enter="enter">
+        @enter="enter"
+      >
         <template>
           <v-col
             cols="12"
@@ -36,16 +39,19 @@
             md="6"
             sm="12"
             v-for="item in items"
-            :key="item.name">
+            :key="item.name"
+          >
             <v-hover>
               <template v-slot="{ hover }">
                 <v-card
                   :color="!hover ? '' : 'indigo lighten-5'"
                   @mouseover="item.show = true"
                   @mouseleave="item.show = false"
-                  class="mx-2 my-2 pa-3">
+                  class="mx-2 my-2 pa-3"
+                >
                   <v-card-title
-                    class="d-flex justify-space-between align-center">
+                    class="d-flex justify-space-between align-center"
+                  >
                     <div class="h5 font-weight-bold primary--text">
                       امانة الرياض
                     </div>
@@ -64,7 +70,8 @@
                         <v-progress-linear
                           height="20"
                           :color="completionRateColor(item.rate)"
-                          :value="item.rate">
+                          :value="item.rate"
+                        >
                           {{ item.rate }}% مكتمل
                         </v-progress-linear>
                       </v-col>
@@ -74,7 +81,8 @@
                         ><v-progress-linear
                           height="20"
                           :color="completionRateColor(item.rate)"
-                          :value="item.rate">
+                          :value="item.rate"
+                        >
                           {{ item.rate }}% مكتمل
                         </v-progress-linear></v-col
                       >
@@ -82,7 +90,8 @@
                         ><v-progress-linear
                           height="20"
                           :color="completionRateColor(item.rate)"
-                          :value="item.rate">
+                          :value="item.rate"
+                        >
                           {{ item.rate }}% مكتمل
                         </v-progress-linear></v-col
                       >

@@ -38,6 +38,11 @@ const routes = [
         name: "revision-one",
         component: () => import("@/views/Revision/-Components/checkOne.vue"),
       },
+      {
+        path: "/reports",
+        name: "reports",
+        component: () => import("@/views/Reports/index.vue"),
+      },
     ],
   },
   {

@@ -24,8 +24,8 @@
                   rounded
                 >
                   <v-icon class="me-3">
-                    mdi-chevron-double-{{ expandAll ? "up" : "down" }}</v-icon
-                  >
+                    mdi-chevron-double-{{ expandAll ? "up" : "down" }}
+                  </v-icon>
                   <span>{{
                     expandAll ? "إخفاء التفاصيل" : "عرض تفاصيل الكل"
                   }}</span>
@@ -47,41 +47,41 @@
         </v-card>
       </v-card>
       <v-card flat outlined rounded="xl" class="pa-3">
-          <transition-group
-                  id="v-row-div"
-                  appear
-                  tag="div"
-                  @before-enter="beforeEnter"
-                  @enter="enter"
-          >
-              <template>
-                  <v-col
-                          v-for="(item, i) in creditsData"
-                          :data-index="i"
-                          :key="i"
-                          cols="12"
-                          lg="3"
-                          md="4"
-                          sm="6"
+        <transition-group
+          id="v-row-div"
+          appear
+          tag="div"
+          @before-enter="beforeEnter"
+          @enter="enter"
+        >
+          <template>
+            <v-col
+              v-for="(item, i) in creditsData"
+              :data-index="i"
+              :key="i"
+              cols="12"
+              lg="3"
+              md="4"
+              sm="6"
+            >
+              <v-hover>
+                <template v-slot="{ hover }">
+                  <v-card
+                    :elevation="!hover ? 0 : 1"
+                    rounded="xl"
+                    :color="!hover ? '' : 'indigo lighten-5'"
+                    :style="`border: 1px solid ${
+                      $vuetify.theme.dark ? '#333' : '#e1e1e1'
+                    }`"
+                    class="pt-3"
                   >
-                      <v-hover>
-                          <template v-slot="{ hover }">
-                              <v-card
-                                      :elevation="!hover ? 0 : 1"
-                                      rounded="xl"
-                                      :color="!hover ? '' : 'indigo lighten-5'"
-                                      :style="`border: 1px solid ${
-                    $vuetify.theme.dark ? '#333' : '#e1e1e1'
-                  }`"
-                                      class="pt-3"
-                              >
-                                  <CreditCard :item="item" :expandAll="expandAll" />
-                              </v-card>
-                          </template>
-                      </v-hover>
-                  </v-col>
-              </template>
-          </transition-group>
+                    <CreditCard :item="item" :expandAll="expandAll" />
+                  </v-card>
+                </template>
+              </v-hover>
+            </v-col>
+          </template>
+        </transition-group>
       </v-card>
     </v-container>
 

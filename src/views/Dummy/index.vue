@@ -1,6 +1,37 @@
 <template>
   <v-sheet>
     <div class="text-center text-h1 mb-5">Dummy</div>
+    <v-card flat min-height="100vh">
+      <v-card
+        width="500px"
+        class="mx-auto overflow-hidden py-7"
+        rounded="xl"
+        flat
+        outlined
+      >
+        <apexchart
+          class="rounded"
+          :options="apexChartOptions"
+          :series="series"
+          height="200"
+          type="area"
+        ></apexchart>
+        <apexchart
+          class="rounded"
+          :options="apexChartOptions"
+          :series="series"
+          height="200"
+          type="line"
+        ></apexchart>
+        <apexchart
+          class="rounded"
+          :options="apexChartOptions"
+          :series="series"
+          height="200"
+          type="radar"
+        ></apexchart>
+      </v-card>
+    </v-card>
     <!-- Countdown -->
     <v-card
       flat
@@ -112,9 +143,96 @@ export default {
     Chart,
     Progress,
   },
-
   data() {
     return {
+      apexChartOptions: {
+        labelColor: "#ef227f",
+        strokeColor: "#E2E8F0",
+        borderColor: "#E2E8F0",
+        color: "#0a2541",
+        chart: {
+          fontFamily: "inherit",
+          sparkline: {
+            enabled: true,
+          },
+          dropShadow: {
+            enabled: true,
+            enabledOnSeries: undefined,
+            top: 10,
+            left: 0,
+            blur: 5,
+            color: "rgba(238,238,238,0.18)",
+            opacity: 0.5,
+          },
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.7,
+            opacityTo: 0.9,
+            stops: [0, 90, 100],
+            colorStops: [
+              {
+                offset: 50,
+                color: "rgba(113,138,168,0.73)", // blue color
+              },
+              {
+                offset: 80,
+                color: "#f3f3f3", // blue color
+              },
+              {
+                offset: 100,
+                color: "#fff", // blue color
+              },
+            ],
+          },
+        },
+        stroke: {
+          curve: "smooth",
+          show: true,
+          width: 3,
+          colors: ["#d1d1d1"],
+        },
+        xaxis: {
+          categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+          labels: {
+            show: true,
+            style: {
+              colors: this.labelColor,
+              fontSize: "12px",
+            },
+          },
+          crosshairs: {
+            show: true,
+            position: "front",
+            stroke: {
+              color: this.borderColor,
+              width: 1,
+              dashArray: 3,
+            },
+          },
+        },
+        tooltip: {
+          style: {
+            fontSize: "12px",
+          },
+          marker: {
+            show: false,
+          },
+        },
+        markers: {
+          colors: [this.color],
+          strokeColor: [this.strokeColor],
+          strokeWidth: 3,
+        },
+      },
+      series: [
+        {
+          name: "series-1",
+          data: [30, 45, 32, 70, 40, 40, 40],
+        },
+      ],
       targetDate: new Date(2023, 3, 20), // April 20, 2023
       time: {
         days: 0,
@@ -164,12 +282,6 @@ export default {
     };
   },
 
-  mounted() {
-    startCountdown(this.targetDate, (remainingTime) => {
-      this.time = remainingTime;
-    });
-  },
-
   methods: {
     changeChartType() {
       let randomIndex = Math.floor(Math.random() * this.chartTypes.length);
@@ -178,6 +290,11 @@ export default {
       }
       this.chartType = this.chartTypes[randomIndex] || "bar";
     },
+  },
+  mounted() {
+    startCountdown(this.targetDate, (remainingTime) => {
+      this.time = remainingTime;
+    });
   },
 };
 </script>

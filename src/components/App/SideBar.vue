@@ -4,7 +4,8 @@
     :color="mainColor"
     :height="height"
     :class="extraClasses"
-    tile>
+    tile
+  >
     <v-list v-model="open" class="pa-3">
       <v-sheet class="transparent px-3 pb-5" dark>
         <component :is="logo" class="transparent" />
@@ -18,13 +19,15 @@
         :class="!children.length ? 'px-3' : 'px-0'"
         :color="!children.length ? 'white' : 'transparent'"
         dark
-        :to="url">
+        :to="url"
+      >
         <v-list-item-icon v-if="!children.length">
           <v-icon color="white" v-text="icon"></v-icon>
         </v-list-item-icon>
         <v-list-item-title
           v-if="!children.length"
-          v-text="name"></v-list-item-title>
+          v-text="name"
+        ></v-list-item-title>
         <template v-if="children.length">
           <v-list-group :value="true" color="white" no-action sub-group>
             <template v-slot:activator>
@@ -42,7 +45,8 @@
               color="white"
               class="white--text ps-10 rounded-xl"
               active-class="rounded-xl elevation-2"
-              :to="url">
+              :to="url"
+            >
               <v-list-item-icon>
                 <v-icon color="white" v-text="icon"></v-icon>
               </v-list-item-icon>
@@ -127,52 +131,46 @@ export default {
           children: [],
         },
         {
-          name: "البرامج",
-          url: "/programs",
-          icon: "mdi-layers-triple",
-          children: [],
-        },
-        {
-          name: "البلاغات والاستفسارات",
-          url: "/communication",
-          icon: "mdi-comment-quote",
-          children: [],
-        },
-        {
-          name: "مستخدمى النظام",
-          url: "/users",
-          icon: "mdi-account-supervisor-circle",
-          children: [],
-        },
-        {
           name: "التقارير",
           url: "/reports",
           icon: "mdi-clipboard-text",
           children: [],
         },
         {
+          name: "البرامج",
+          url: "",
+          icon: "mdi-layers-triple",
+          children: [],
+        },
+        {
+          name: "البلاغات والاستفسارات",
+          url: "",
+          icon: "mdi-comment-quote",
+          children: [],
+        },
+        {
+          name: "مستخدمى النظام",
+          url: "",
+          icon: "mdi-account-supervisor-circle",
+          children: [],
+        },
+        {
           name: "اعدادات النظام",
-          url: "/settings",
+          url: "",
           icon: "mdi-cog",
           children: [],
         },
         {
           name: "مكتبة المعلومات",
-          url: "/bookmark",
+          url: "",
           icon: "mdi-bookmark-box",
           children: [],
         },
         {
           name: "تسجيل الخروج",
-          url: "/logout",
+          url: "/auth/login",
           icon: "mdi-logout",
           children: [],
-        },
-        {
-          name: "Components ",
-          url: "/dummy/blank",
-          children: [],
-          icon: "mdi-contrast-box",
         },
       ],
     };
@@ -182,7 +180,7 @@ export default {
       return this.$vuetify.theme.dark;
     },
     logo() {
-      return Logo; //!this.isDarkModeOn ? LogoDark : Logo;
+      return Logo;
     },
   },
   methods: {
