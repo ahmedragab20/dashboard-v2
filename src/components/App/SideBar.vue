@@ -123,7 +123,49 @@ export default {
         {
           name: "التدقيق والمراجعة",
           url: "/revision",
-          icon: "mdi-credit-card",
+          icon: "mdi-calendar-check",
+          children: [],
+        },
+        {
+          name: "البرامج",
+          url: "/programs",
+          icon: "mdi-layers-triple",
+          children: [],
+        },
+        {
+          name: "البلاغات والاستفسارات",
+          url: "/communication",
+          icon: "mdi-comment-quote",
+          children: [],
+        },
+        {
+          name: "مستخدمى النظام",
+          url: "/users",
+          icon: "mdi-account-supervisor-circle",
+          children: [],
+        },
+        {
+          name: "التقارير",
+          url: "/reports",
+          icon: "mdi-clipboard-text",
+          children: [],
+        },
+        {
+          name: "اعدادات النظام",
+          url: "/settings",
+          icon: "mdi-cog",
+          children: [],
+        },
+        {
+          name: "مكتبة المعلومات",
+          url: "/bookmark",
+          icon: "mdi-bookmark-box",
+          children: [],
+        },
+        {
+          name: "تسجيل الخروج",
+          url: "/logout",
+          icon: "mdi-logout",
           children: [],
         },
         {
