@@ -1,12 +1,16 @@
 //
 // Apexcharts
 //
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700;800;900;1000&display=swap');
 
+* {
+    font-family: 'Cairo' !important;
+}
 // Text
 .apexcharts-text,
 .apexcharts-title-text,
 .apexcharts-legend-text {
-  font-family: "Roboto" !important;
+  font-family: "Cairo" !important;
 }
 
 .apexcharts-title-text {
@@ -127,7 +131,6 @@
     }
   }
 }
-
 // Bar charts hover text colors
 //@each $name, $color in $theme-text-colors {
 //  .apexcharts-bar-hover-#{$name} {

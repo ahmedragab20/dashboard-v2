@@ -100,13 +100,13 @@ export default {
       ],
       sidebarLinks: [
         {
-          name: "تقارير عامة",
+          name: "الرئيسية",
           url: "/",
           children: [],
           icon: "mdi-home",
         },
         {
-          name: "البطاقات (الرئيسية)",
+          name: "البطاقات",
           url: "/credits",
           icon: "mdi-credit-card",
           children: [
@@ -131,12 +131,6 @@ export default {
           children: [],
         },
         {
-          name: "التقارير",
-          url: "/reports",
-          icon: "mdi-clipboard-text",
-          children: [],
-        },
-        {
           name: "البرامج",
           url: "",
           icon: "mdi-layers-triple",
@@ -149,11 +143,18 @@ export default {
           children: [],
         },
         {
-          name: "مستخدمى النظام",
+          name: "المستخدمون",
           url: "",
           icon: "mdi-account-supervisor-circle",
           children: [],
         },
+        {
+          name: "التقارير",
+          url: "/reports",
+          icon: "mdi-clipboard-text",
+          children: [],
+        },
+        
         {
           name: "اعدادات النظام",
           url: "",

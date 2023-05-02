@@ -336,7 +336,7 @@ export default {
         { text: "تاريخ البدء", value: "startDate" },
         { text: "تاريخ الانتهاء", value: "endDate" },
         { text: "الحالة", value: "status" },
-        { text: "نسسبة الانجاز", value: "rate" },
+        { text: "نسسبة المطابقة", value: "rate" },
         { text: "الاسئلة", value: "question" },
       ],
       gov: ["امانة الرياض", "وزارة الصحة", "أمانة جدة"],

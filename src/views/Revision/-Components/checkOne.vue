@@ -10,7 +10,7 @@
                 التدقيق والمراجعة/
                 <span class="primary--text">امانة الرياض</span>
               </div>
-              <p class="grey--text">جميع الاسئلة الخاصة لهذه الجهه</p>
+              <!-- <p class="grey--text">جميع الاسئلة الخاصة لهذه الجهه</p> -->
             </div>
           </div>
         </v-col>
@@ -39,7 +39,7 @@
                   <v-progress-circular
                     :width="10"
                     :rotate="-90"
-                    :size="200"
+                    :size="220"
                     class="mx-3 text-center"
                     :value="item.completionRate * 100 || 0"
                     :color="item.color">

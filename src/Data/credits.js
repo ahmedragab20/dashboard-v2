@@ -1,13 +1,13 @@
 export default [
   {
     id: "b5d5a5cd-37e8-4a9c-a2c3-3d7c8cc384a1",
-    title: "وزارة الصحة",
+    title: "بطاقة التحول الرقمي",
     rate: 4.5,
     completionRate: 0.8,
     standardsNumber: 12,
     researchersNumber: 50,
     expertsNumber: 10,
-    icon: "mdi-heart-pulse",
+    icon: "fi-rr-microchip",
     lastVisit: "Apr 15, 2023",
     lastEdit: "Apr 16, 2023",
     questions: [
@@ -45,13 +45,13 @@ export default [
   },
   {
     id: "345bde71-9c38-4ed5-8b77-af12e2c94c2b",
-    title: "مركز الأبحاث الفلكية",
+    title: "بطاقة الحماية والأمان",
     rate: 4.8,
     completionRate: 0.9,
     standardsNumber: 8,
     researchersNumber: 30,
     expertsNumber: 15,
-    icon: "mdi-telescope",
+    icon: "fi-rr-lock",
     lastVisit: "Apr 17, 2023",
     lastEdit: "Apr 17, 2023",
     questions: [
@@ -88,13 +88,13 @@ export default [
   },
   {
     id: "f97ab48e-3b3e-4c5d-ba89-38a5a5cf5f5c",
-    title: "معهد الأبحاث الجيولوجية",
+    title: "بطاقة السلامة",
     rate: 4.5,
     completionRate: 0.8,
     standardsNumber: 6,
     researchersNumber: 25,
     expertsNumber: 12,
-    icon: "mdi-earth",
+    icon: "fi-rr-shield-check",
     lastVisit: "Apr 16, 2023",
     lastEdit: "Apr 17, 2023",
     questions: [
@@ -131,13 +131,13 @@ export default [
   },
   {
     id: "1a2b3c4d-5e6f-7g8h-9i1j",
-    title: "مركز الأبحاث الطبية",
+    title: " بطاقة الجودة",
     rate: 4.8,
     completionRate: 0.9,
     standardsNumber: 8,
     researchersNumber: 50,
     expertsNumber: 20,
-    icon: "mdi-medical-bag",
+    icon: "fi-rr-badge",
     lastVisit: "Apr 17, 2023",
     lastEdit: "Apr 17, 2023",
     questions: [
@@ -173,13 +173,13 @@ export default [
   },
   {
     id: "5g6h7i8j-9k1l-2m3n-4o5p",
-    title: "معهد البحوث الزراعية",
+    title: "بطاقة الاستدامة",
     rate: 4.5,
     completionRate: 0.5,
     standardsNumber: 6,
     researchersNumber: 40,
     expertsNumber: 15,
-    icon: "mdi-flower",
+    icon: "fi-rr-hand-holding-water",
     lastVisit: "Apr 16, 2023",
     lastEdit: "Apr 17, 2023",
     questions: [
@@ -257,13 +257,13 @@ export default [
   },
   {
     id: "3f4g5h6i-7j8k-9l1m-2n3o",
-    title: "مستشفى الحياة",
+    title: "بطاقة الذكاء الاصطناعي",
     rate: 4.6,
     completionRate: 0.95,
     standardsNumber: 12,
     researchersNumber: 30,
     expertsNumber: 15,
-    icon: "mdi-hospital-building",
+    icon: "fi-rr-brain-circuit",
     lastVisit: "Apr 18, 2023",
     lastEdit: "Apr 18, 2023",
     questions: [
@@ -299,13 +299,13 @@ export default [
   },
   {
     id: "1a2b3c4d-5e6f-7g8h-9i2j",
-    title: "مركز الأبحاث الزراعية",
+    title:"بطاقة التقييم",
     rate: 4.5,
     completionRate: 0.8,
     standardsNumber: 6,
     researchersNumber: 30,
     expertsNumber: 15,
-    icon: "mdi-food",
+    icon: " fi-rr-square-star",
     lastVisit: "Apr 16, 2023",
     lastEdit: "Apr 17, 2023",
     questions: [
@@ -341,13 +341,13 @@ export default [
   },
   {
     id: "4f5g6h7i-8j9k-1l2m",
-    title: "مركز البحوث الزراعية",
+    title: "بطاقة البنية التحتية",
     rate: 4.5,
     completionRate: 0.4,
     standardsNumber: 10,
     researchersNumber: 30,
     expertsNumber: 15,
-    icon: "mdi-tractor",
+    icon: "fi-rr-sitemap",
     lastVisit: "Apr 16, 2023",
     lastEdit: "Apr 17, 2023",
     questions: [

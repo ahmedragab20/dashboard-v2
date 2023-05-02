@@ -5,7 +5,7 @@ import vuetify from "./plugins/vuetify";
 import VueApexCharts from "vue-apexcharts";
 import "apexcharts/dist/apexcharts.css";
 import "@/assets/style/main.scss";
-
+import "@/assets/css/uicons-regular-rounded/css/uicons-regular-rounded.css";
 Vue.config.productionTip = false;
 
 Vue.use(VueApexCharts);
