@@ -7,7 +7,7 @@
             <div class="d-flex justify-space-between align-center px-4 pt-1">
               <div>
                 <v-card-title
-                  class="primary--text h1 font-weight-black"
+                  class="primary--text h1 font-weight-black mb-3"
                   style="font-size: 32px">
                   تصفية</v-card-title
                 >
