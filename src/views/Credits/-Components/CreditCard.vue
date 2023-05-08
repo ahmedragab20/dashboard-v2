@@ -10,9 +10,10 @@
   >
     <v-card-text class="py-0">
       <v-row align="center" no-gutters>
-        <v-col cols="12" class="text-center">
+        <v-col cols="12"  class="text-center mb-5 mt-2">
           <v-icon color="primary" :size="58">{{ item.icon }}</v-icon>
         </v-col>
+        
         <v-col cols="12">
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
@@ -25,7 +26,7 @@
             <v-card-subtitle class="pa-0">{{ item.title }}</v-card-subtitle>
           </v-tooltip>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="12" class="mb-2">
           <div class="d-flex justify-center align-center">
             <v-progress-circular
               :width="3"
@@ -40,7 +41,7 @@
               </small>
             </v-progress-circular>
             <v-card-subtitle class="body-1 px-0">
-              معدل الانجاز
+              نسبة المطابقة
             </v-card-subtitle>
           </div>
         </v-col>

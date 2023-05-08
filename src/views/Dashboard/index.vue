@@ -50,9 +50,9 @@
       <v-card-title class="text-h5 font-bold primary--text">
         {{ dashboard.charts }}
       </v-card-title>
-      <v-card-subtitle>
+      <!-- <v-card-subtitle>
         {{ dashboard.chartsSubtitle }}
-      </v-card-subtitle>
+      </v-card-subtitle> -->
       <v-card flat color="transparent">
         <v-row justify="space-between" align="center">
           <v-col cols="12" sm="6">
@@ -181,11 +181,11 @@
       </v-card-title>
       <v-divider></v-divider>
       <v-card-title class="mb-5 primary--text">
-        البيانات الخاصة بالمشروع
+        تقارير عامة
       </v-card-title>
-      <v-card-subtitle>
+      <!-- <v-card-subtitle>
         هذه البيانات تم تحديثها بشكل دوري وهي متوفرة للمستخدمين
-      </v-card-subtitle>
+      </v-card-subtitle> -->
       <v-card flat>
         <v-row class="pa-4" justify="space-between">
           <v-col cols="12" sm="6" class="text-center">
@@ -257,11 +257,11 @@
       <v-divider></v-divider>
       <v-card flat>
         <v-card-title class="mb-5 primary--text">
-          بعض البيانات العامة الخاصة بالمشروع
+          تقارير الجهات الحكومية
         </v-card-title>
-        <v-card-subtitle>
+        <!-- <v-card-subtitle>
           هذة البيانات ليست متوفرة للمستخدمين وهي مخصصة للمشرفين فقط
-        </v-card-subtitle>
+        </v-card-subtitle> -->
         <v-row no-gutters>
           <v-col cols="12">
             <chart

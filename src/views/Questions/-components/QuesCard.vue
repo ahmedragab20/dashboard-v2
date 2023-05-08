@@ -48,10 +48,10 @@
         </div>
       </div>
       <div class="d-flex align-center justify-space-between">
-        <v-chip class="lighten-5">
+        <!-- <v-chip class="lighten-5">
           <v-icon class="pa-0" color="success">mdi-circle-medium</v-icon>
           <span class="ma-1">{{ item.status }}</span>
-        </v-chip>
+        </v-chip> -->
         <div class="d-flex">
           <v-icon class="ml-2" color="error" style="transform: rotate(45deg)"
             >mdi-paperclip</v-icon

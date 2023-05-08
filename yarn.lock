@@ -963,6 +963,13 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+"@flaticon/flaticon-uicons@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@flaticon/flaticon-uicons/-/flaticon-uicons-2.1.0.tgz#fac58a276e98e250ded5b54dbeb4526132c6d78b"
+  integrity sha512-u096z29k+0aJ7O3/T1d1f/z0SdiVwFxZgsrzTAJPaxFCT9C+BV5W3tTCzq0voeaG1SIW0DGxSeJ/HtBISTOF3w==
+  optionalDependencies:
+    esbuild-linux-64 "^0.14.5"
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
@@ -3596,6 +3603,11 @@ es-module-lexer@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-1.2.1.tgz#ba303831f63e6a394983fde2f97ad77b22324527"
   integrity sha512-9978wrXM50Y4rTMmW5kXIC09ZdXQZqkE4mxhwkd8VbzsGkXGPgV4zWuqQJgCEzYngdo2dYDa0l8xhX4fkSwJSg==
+
+esbuild-linux-64@^0.14.5:
+  version "0.14.54"
+  resolved "https://registry.yarnpkg.com/esbuild-linux-64/-/esbuild-linux-64-0.14.54.tgz#de5fdba1c95666cf72369f52b40b03be71226652"
+  integrity sha512-EgjAgH5HwTbtNsTqQOXWApBaPVdDn7XcK+/PtJwZLT1UmpLoznPd8c5CxqsH2dQK3j05YsB3L17T8vE7cp4cCg==
 
 escalade@^3.1.1:
   version "3.1.1"

@@ -6,7 +6,7 @@
           <div class="d-flex justify-space-between align-center">
             <div>
               <div class="text-h4 primary--text">التدقيق والمراجعة</div>
-              <p class="grey--text">جميع الاسئلة الخاصة بجميع الجهات</p>
+              <p class="grey--text">جميع الجهات الحكومية</p>
             </div>
             <div class="d-flex justify-end align-center py-0">
               <v-btn

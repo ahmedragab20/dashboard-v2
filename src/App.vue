@@ -40,7 +40,9 @@ export default {
   },
 };
 </script>
+
 <style>
+
 .rout-enter-from,
 .rout-leave-to {
   opacity: 0;
@@ -56,3 +58,4 @@ export default {
   background: transparent;
 }
 </style>
+
