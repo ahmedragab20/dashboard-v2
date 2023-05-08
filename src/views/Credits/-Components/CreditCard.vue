@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="mx-auto"
+    class="mx-auto py-0"
     :max-width="368"
     rounded="xl"
     density="compact"
@@ -8,12 +8,23 @@
     flat
     outlined
   >
+    <v-card-title class="d-flex justify-space-between align-start ma-0 pa-0">
+      <div
+        style="border-top-right-radius: 15px; border-bottom-left-radius: 8px"
+        class="primary white--text py-1 px-3 font-weight-light text-subtitle-1"
+      >
+        {{ item.cardNumber }}
+      </div>
+      <v-spacer></v-spacer>
+      <div class="error--text h3 pa-1 pl-3">*</div>
+    </v-card-title>
+    <!-- <v-card-title>{{ item.cardNumber }}</v-card-title> -->
     <v-card-text class="py-0">
       <v-row align="center" no-gutters>
-        <v-col cols="12"  class="text-center mb-5 mt-2">
+        <v-col cols="12" class="text-center mb-5 mt-2">
           <v-icon color="primary" :size="58">{{ item.icon }}</v-icon>
         </v-col>
-        
+
         <v-col cols="12">
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
@@ -41,7 +52,7 @@
               </small>
             </v-progress-circular>
             <v-card-subtitle class="body-1 px-0">
-              نسبة المطابقة
+              مدى الالتزام
             </v-card-subtitle>
           </div>
         </v-col>
@@ -63,6 +74,7 @@
                 'icon',
                 'questions',
                 'standards',
+                'cardNumber',
               ].includes(key)
             "
           >

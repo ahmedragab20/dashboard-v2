@@ -7,84 +7,88 @@
     flat
   >
     <v-container>
-      <v-row class="overflow-hidden" style="height: 100vh" align="center">
-        <v-card
-          flat
-          height="70vh"
-          width="50%"
-          rounded
-          class="d-flex flex-column justify-center pa-8 overflow-hidden"
-        >
-          <v-card flat class="transparent">
-            <v-card-title class="text-h3 mb-3">
-              {{ auth.login }}
-            </v-card-title>
-            <v-card-subtitle>
-              {{ auth.loginSubtitle }}
-            </v-card-subtitle>
-            <v-form v-model="valid" ref="form" @submit.prevent="submitLogin">
-              <v-text-field
-                v-model="email"
-                :label="auth.email"
-                color="primary"
-                :rules="emailRules"
-                :disabled="loading"
-                outlined
-              ></v-text-field>
-
-              <v-text-field
-                v-model="password"
-                :label="auth.password"
-                :type="showPassword ? 'text' : 'password'"
-                color="primary"
-                :rules="passwordRules"
-                :disabled="loading"
-                outlined
-                class="mt-3"
-              >
-                <template #append>
-                  <v-btn
-                    icon
-                    @click="showPassword = !showPassword"
-                    :color="showPassword ? 'primary' : 'grey'"
-                  >
-                    <v-icon>{{
-                      showPassword ? "mdi-eye" : "mdi-eye-off"
-                    }}</v-icon>
-                  </v-btn>
-                </template>
-              </v-text-field>
-              <v-card-subtitle>{{ auth.forgotPassword }}</v-card-subtitle>
-              <v-btn
-                class="mt-2 py-5"
-                variant="flat"
-                type="submit"
-                block
-                color="primary"
-                :disabled="!valid || loading"
-                :loading="loading"
-              >
+      <v-row
+        class="overflow-hidden d-flex justify-space-between align-center"
+        style="height: 100vh"
+        align="center"
+      >
+        <v-col cols="6">
+          <v-card
+            flat
+            height="70vh"
+            rounded
+            class="d-flex flex-column justify-center pa-8 overflow-hidden"
+          >
+            <v-card flat class="transparent">
+              <v-card-title class="text-h3 mb-3">
                 {{ auth.login }}
-              </v-btn>
-            </v-form>
-            <v-card-subtitle class="mx-auto mt-auto text-center pt-7">
-              {{ auth.allRightsReserved }} &copy; {{ general.companyName }}
-            </v-card-subtitle>
+              </v-card-title>
+              <v-card-subtitle>
+                {{ auth.loginSubtitle }}
+              </v-card-subtitle>
+              <v-form v-model="valid" ref="form" @submit.prevent="submitLogin">
+                <v-text-field
+                  v-model="email"
+                  :label="auth.email"
+                  color="primary"
+                  :rules="emailRules"
+                  :disabled="loading"
+                  outlined
+                ></v-text-field>
+
+                <v-text-field
+                  v-model="password"
+                  :label="auth.password"
+                  :type="showPassword ? 'text' : 'password'"
+                  color="primary"
+                  :rules="passwordRules"
+                  :disabled="loading"
+                  outlined
+                  class="mt-3"
+                >
+                  <template #append>
+                    <v-btn
+                      icon
+                      @click="showPassword = !showPassword"
+                      :color="showPassword ? 'primary' : 'grey'"
+                    >
+                      <v-icon>{{
+                        showPassword ? "mdi-eye" : "mdi-eye-off"
+                      }}</v-icon>
+                    </v-btn>
+                  </template>
+                </v-text-field>
+                <v-card-subtitle>{{ auth.forgotPassword }}</v-card-subtitle>
+                <v-btn
+                  class="mt-2 py-5"
+                  variant="flat"
+                  type="submit"
+                  block
+                  color="primary"
+                  :disabled="!valid || loading"
+                  :loading="loading"
+                >
+                  {{ auth.login }}
+                </v-btn>
+              </v-form>
+              <v-card-subtitle class="mx-auto mt-auto text-center pt-7">
+                {{ auth.allRightsReserved }} &copy; {{ general.companyName }}
+              </v-card-subtitle>
+            </v-card>
           </v-card>
-        </v-card>
-        <v-card
-          flat
-          width="50%"
-          class="transparent d-flex justify-center align-center"
-          outlined
-          tile
-        >
-          <v-img
-            style="height: 70vh"
-            cover
-            src="https://images.unsplash.com/photo-1680584405372-defac8a5db62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2535&q=80"
-          ></v-img>
-        </v-card>
+        </v-col>
+        <v-col cols="6" class="d-flex justify-end align-center">
+          <v-card
+            flat
+            color="primary"
+            class="d-flex py-7 px-15 justify-center align-center"
+            outlined
+            tile
+          >
+            <!-- src="https://images.unsplash.com/photo-1680584405372-defac8a5db62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2535&q=80" -->
+            <v-img style="height: 60vh" cover src="@/assets/img.png"></v-img>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </v-card>

@@ -106,7 +106,7 @@ export default {
           icon: "mdi-home",
         },
         {
-          name: "البطاقات",
+          name: "المحاور",
           url: "/credits",
           icon: "mdi-credit-card",
           children: [
@@ -154,7 +154,7 @@ export default {
           icon: "mdi-clipboard-text",
           children: [],
         },
-        
+
         {
           name: "اعدادات النظام",
           url: "",

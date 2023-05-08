@@ -4,12 +4,11 @@
       <v-card flat outlined rounded="xl" class="pa-0 mb-5">
         <v-card flat rounded="xl" class="d-flex justify-space-between pa-0">
           <v-col cols="6">
-          
             <v-card-title class="text-h4 primary--text px-0 pt-0">
-              البطاقات
+              المعايير الاساسية للتحول الرقمى
             </v-card-title>
             <v-card-subtitle class="px-0 grey--text">
-              جميع البطاقات الخاصة بجميع الجهات
+              جميع المعايير الخاصة يكل قسم
             </v-card-subtitle>
           </v-col>
           <v-col cols="6">
@@ -46,6 +45,19 @@
             </div>
           </v-col>
         </v-card>
+        <v-col cols="12 mb-3">
+          <v-btn
+            v-for="tab in tabs"
+            :key="tab.name"
+            @click="activeComponent = tab.name"
+            :class="['tab-btn', { active: activeComponent === tab.name }]"
+          >
+            <div class="d-flex align-center pa-4">
+              <span :class="tab.icon"></span>
+              <span class="ml-3">{{ tab.val }}</span>
+            </div>
+          </v-btn>
+        </v-col>
       </v-card>
       <v-card flat outlined rounded="xl" class="pa-3">
         <transition-group
@@ -74,9 +86,16 @@
                     :style="`border: 1px solid ${
                       $vuetify.theme.dark ? '#333' : '#e1e1e1'
                     }`"
-                    class="pt-3"
+                    class="pt-0"
                   >
-                    <CreditCard :item="item" :expandAll="expandAll" />
+                    <Transition name="fade" mode="out-in">
+                      <component
+                        :is="activeComponent"
+                        :item="item"
+                        :expandAll="expandAll"
+                      ></component>
+                    </Transition>
+                    <!-- <CreditCard :item="item" :expandAll="expandAll" /> -->
                   </v-card>
                 </template>
               </v-hover>
@@ -94,6 +113,7 @@
 import gsap from "gsap";
 import creditsData from "@/Data/credits";
 import CreditCard from "@/views/Credits/-Components/CreditCard.vue";
+import CreditCard2 from "@/views/Credits/-Components/CreditCard2.vue";
 import { credits } from "@/locals/ar-KSA";
 import { makeItLikeVRow } from "@/utils/helpers";
 import Filters from "@/views/Credits/-Components/Filters.vue";
@@ -101,6 +121,11 @@ import Filters from "@/views/Credits/-Components/Filters.vue";
 export default {
   data() {
     return {
+      tabs: [
+        { name: "CreditCard", icon: "fi-rr-list", val: "القسم الاول" },
+        { icon: "fi-rr-apps", name: "CreditCard2", val: "القسم الثانى" },
+      ],
+      activeComponent: "CreditCard",
       filterationsDialog: false,
       cardPreviewDialog: false,
       expandAll: false,
@@ -157,6 +182,33 @@ export default {
   components: {
     CreditCard,
     Filters,
+    CreditCard2,
   },
 };
 </script>
+<style scoped>
+.tab-btn {
+  background: lightblue !important;
+  border-radius: 8px !important;
+  color: #3d3870 !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+  font-size: 12px !important;
+  line-height: 14px !important;
+  text-transform: uppercase !important;
+  padding: 12px 17px !important;
+  margin: 0px 5px !important;
+}
+.tab-btn i {
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 16px !important;
+  text-align: center !important;
+}
+.active {
+  background: #3d3870 !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+}
+</style>
