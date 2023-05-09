@@ -40,7 +40,7 @@
                     cover
                   ></v-img>
                 </v-avatar>
-                <span style="user-select: none" color="primary">زيد</span>
+                <span style="user-select: none" color="primary">محمد</span>
                 <v-icon size="25">mdi-menu-down</v-icon>
               </v-card>
             </template>

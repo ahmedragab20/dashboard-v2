@@ -30,7 +30,7 @@ export default [
     id: 4,
     title: "المدققون",
     subtitle: "اجمالي اعداد المدققون",
-    value: 880,
+    value: 100,
     icon: "mdi-chart-line",
     iconColor: "#896FB6FF",
     border: "",

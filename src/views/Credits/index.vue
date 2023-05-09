@@ -52,15 +52,18 @@
             @click="activeComponent = tab.name"
             :class="['tab-btn', { active: activeComponent === tab.name }]"
           >
-            <div class="d-flex align-center pa-4">
-              <span :class="tab.icon"></span>
+            <div class="d-flex justify-center align-center py-4">
+              <!-- <span :class="tab.icon"></span> -->
               <span class="ml-3">{{ tab.val }}</span>
             </div>
           </v-btn>
         </v-col>
       </v-card>
       <v-card flat outlined rounded="xl" class="pa-3">
-        <transition-group
+        <Transition name="fade" mode="out-in">
+          <component :is="activeComponent" :expandAll="expandAll"></component>
+        </Transition>
+        <!-- <transition-group
           id="v-row-div"
           appear
           tag="div"
@@ -88,20 +91,14 @@
                     }`"
                     class="pt-0"
                   >
-                    <Transition name="fade" mode="out-in">
-                      <component
-                        :is="activeComponent"
-                        :item="item"
-                        :expandAll="expandAll"
-                      ></component>
-                    </Transition>
-                    <!-- <CreditCard :item="item" :expandAll="expandAll" /> -->
+                    
+                    
                   </v-card>
                 </template>
               </v-hover>
             </v-col>
           </template>
-        </transition-group>
+        </transition-group> -->
       </v-card>
     </v-container>
 
@@ -188,7 +185,7 @@ export default {
 </script>
 <style scoped>
 .tab-btn {
-  background: lightblue !important;
+  background: #00a3ff33 !important;
   border-radius: 8px !important;
   color: #3d3870 !important;
   font-style: normal !important;
@@ -210,5 +207,14 @@ export default {
   background: #3d3870 !important;
   border-radius: 8px !important;
   color: #ffffff !important;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
