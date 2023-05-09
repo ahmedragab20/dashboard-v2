@@ -16,7 +16,7 @@
         {{ item.cardNumber }}
       </div>
       <v-spacer></v-spacer>
-      <div class="error--text h3 pa-1 pl-3">*</div>
+      <!-- <div class="error--text h3 pa-1 pl-3">*</div> -->
     </v-card-title>
     <!-- <v-card-title>{{ item.cardNumber }}</v-card-title> -->
     <v-card-text class="py-0">
