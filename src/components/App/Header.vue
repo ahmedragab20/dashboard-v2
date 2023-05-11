@@ -36,7 +36,7 @@
                 <v-avatar class="mx-2" size="25px">
                   <v-img
                     alt="Avatar"
-                    src="@/assets/avatar/avatar-saudi.jpg"
+                    src="@/assets/user.jpeg"
                     cover
                   ></v-img>
                 </v-avatar>
