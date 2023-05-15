@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="3" v-for="(item, i) in creditsData" :key="i">
+    <v-col cols="4" v-for="(item, i) in creditsData" :key="i">
       <v-hover>
         <template v-slot="{ hover }">
           <v-card
@@ -34,16 +34,17 @@
             <!-- <v-card-title>{{ item.cardNumber }}</v-card-title> -->
             <v-card-text class="py-0">
               <v-row align="center" no-gutters>
-                <v-col cols="12" class="text-center mb-5 mt-2">
+                <!-- <v-col cols="12" class="text-center mb-5 mt-2">
                   <v-icon color="primary" :size="58">{{ item.icon }}</v-icon>
-                </v-col>
+                </v-col> -->
 
                 <v-col cols="12">
                   <v-tooltip top>
                     <template v-slot:activator="{ on, attrs }">
                       <div v-on="on" v-bind="attrs">
                         <div
-                          class="body-1 text-truncate font-weight-bold text-center"
+                          style="min-height: 130px"
+                          class="body-1 mt-2 font-weight-bold text-center"
                         >
                           {{ item.title }}
                         </div>
